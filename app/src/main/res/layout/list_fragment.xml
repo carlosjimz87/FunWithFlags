@@ -33,7 +33,7 @@
             tools:ignore="SpeakableTextPresentCheck"
             tools:listitem="@layout/list_item" />
 
-        <TextView
+        <ImageView
             android:id="@+id/status_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

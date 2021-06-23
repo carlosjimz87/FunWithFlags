@@ -2,42 +2,26 @@ package com.carlosjimz87.funwithflags.adapters
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
-import coil.decode.SvgDecoder
-import coil.load
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.domain.list.Country
 import com.carlosjimz87.funwithflags.fragments.list.CountriesApiStatus
+import com.carlosjimz87.funwithflags.utils.getCompatDrawable
+import com.carlosjimz87.funwithflags.utils.loadImage
 import timber.log.Timber
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
-
-    val imageLoader = ImageLoader.Builder(imgView.context)
-        .componentRegistry {
-            add(SvgDecoder(imgView.context))
-        }
-        .build()
-
-    imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        imgView.load(imgUri, imageLoader) {
-            placeholder(R.drawable.loading_animator)
-            error(R.drawable.broken_image)
-        }
-    }
+    loadImage(imgView, imgUrl)
 }
 
 @BindingAdapter("countriesState")
 fun bindViewState(
-    stateView: TextView,
+    stateView: ImageView,
     status: CountriesApiStatus?,
 ) {
-    updateListFragmentUI(textView = stateView, status = status)
+    updateListFragmentUI(imageView = stateView, status = status)
 }
 
 @BindingAdapter("listState")
@@ -65,23 +49,28 @@ fun bindRecyclerView(
 fun updateListFragmentUI(
     status: CountriesApiStatus?,
     listView: RecyclerView? = null,
-    textView: TextView? = null,
+    imageView: ImageView? = null,
 ) {
     when (status) {
-        CountriesApiStatus.LOADING -> {
-            listView?.visibility = View.GONE
-            textView?.visibility = View.VISIBLE
-            textView?.text = "LOADING"
-        }
-        CountriesApiStatus.ERROR -> {
-            listView?.visibility = View.GONE
-            textView?.visibility = View.VISIBLE
-            textView?.text = "ERROR"
-        }
         CountriesApiStatus.SUCCESS -> {
             listView?.visibility = View.VISIBLE
-            textView?.visibility = View.GONE
+            imageView?.visibility = View.GONE
+        }
+        CountriesApiStatus.LOADING -> {
+            listView?.visibility = View.GONE
+            imageView?.let {
+                it.visibility = View.VISIBLE
+                loadImage(it,
+                    imgDrawable = getCompatDrawable(it.context, R.drawable.loading_image))
+            }
+        }
+        else -> {
+            listView?.visibility = View.GONE
+            imageView?.let {
+                it.visibility = View.VISIBLE
+                loadImage(it,
+                    imgDrawable = getCompatDrawable(it.context, R.drawable.broken_image))
+            }
         }
     }
 }
-

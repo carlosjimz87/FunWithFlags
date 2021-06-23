@@ -4,16 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.databinding.ListItemBinding
-import com.carlosjimz87.funwithflags.databinding.ListItemBindingImpl
 import com.carlosjimz87.funwithflags.domain.list.Country
-import timber.log.Timber
 
 class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
 
     private lateinit var countries: List<Country>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
-        return CountryViewHolder(ListItemBindingImpl.inflate(
+        return CountryViewHolder(ListItemBinding.inflate(
             LayoutInflater.from(parent.context)))
     }
 
