@@ -29,7 +29,7 @@ For the UI a simple approach was conceived using **Material Design** based compo
 - [X] Config resources and gradle files.
 - [X] Setting fragments and viewmodel.
 - [X] Prepare Bindings and Navigation.
-- [ ] Setup API client.
+- [X] Setup API client with logger.
 - [ ] Handle data from API.
 - [ ] Improve performance.
 - [ ] Internationalization.
