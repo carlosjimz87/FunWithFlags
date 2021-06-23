@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.carlosjimz87.funwithflags.fragments.list.ListViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,6 +17,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/countriesRV"
+            app:listData="@{viewModel.countries}"
+            app:listState="@{viewModel.status}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="2dp"
@@ -23,16 +31,16 @@
             tools:ignore="SpeakableTextPresentCheck"
             tools:listitem="@layout/list_item" />
 
-        <ImageView
+        <TextView
             android:id="@+id/status_image"
+            app:countriesState="@{viewModel.status}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-            tools:ignore="ContentDescription" />
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

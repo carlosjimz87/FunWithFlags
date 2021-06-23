@@ -2,12 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_shape"
         android:minHeight="80dp"
-        android:layout_margin="8dp"
+        android:layout_margin="10dp"
         tools:ignore="RtlSymmetry">
 
 
@@ -24,7 +25,8 @@
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/black"
             android:textSize="40sp"
-            tools:text="Spain" />
+            tools:text="Spain"
+            tools:ignore="RelativeOverlap" />
 
         <ImageView
             android:id="@+id/flag_image"
