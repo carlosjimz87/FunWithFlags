@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_shape"
+        android:minHeight="80dp"
+        android:layout_margin="8dp"
+        tools:ignore="RtlSymmetry">
+
+
+        <TextView
+            android:id="@+id/country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/bebasneue"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            tools:text="Spain" />
+
+        <ImageView
+            android:id="@+id/flag_image"
+            android:padding="2dp"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_spain" />
+
+        <ImageView
+            android:padding="2dp"
+            android:id="@+id/triangle_shape"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:layout_alignStart="@+id/flag_image"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/triangle_shape" />
+
+    </RelativeLayout>
+</layout>
