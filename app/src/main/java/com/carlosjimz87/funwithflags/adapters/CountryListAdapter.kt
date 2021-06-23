@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.databinding.ListItemBinding
 import com.carlosjimz87.funwithflags.databinding.ListItemBindingImpl
-import com.carlosjimz87.funwithflags.domain.Country
+import com.carlosjimz87.funwithflags.domain.list.Country
 import timber.log.Timber
 
 class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
@@ -39,8 +39,11 @@ class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHo
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(country: Country) {
-            binding.countryName.text = country.name
-            binding.executePendingBindings()
+            with(binding) {
+                this.country = country
+                countryName.text = country.name
+                executePendingBindings()
+            }
         }
     }
 }

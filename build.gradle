@@ -8,6 +8,7 @@ buildscript {
         timber_version = "4.7.1"
         lifecycle_version = "2.3.1"
         nav_version = "2.3.5"
+        coil_version = "1.2.2"
         legacy_support_version = "1.0.0"
         gradle_plugin_version = "1.5.10"
     }

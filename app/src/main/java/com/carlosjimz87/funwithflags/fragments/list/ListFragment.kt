@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
+import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
 
 class ListFragment : Fragment() {
@@ -17,7 +20,7 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         val fragmentBinding = ListFragmentBinding.inflate(inflater)
 
         binding = fragmentBinding
@@ -28,11 +31,17 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
+
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = listViewModel
             countriesRV.adapter = CountryListAdapter()
+
+            countriesRV.addDividerShape(requireContext(), R.drawable.divider_shape)
         }
         Timber.i("ListViewModel created")
     }
+
 }

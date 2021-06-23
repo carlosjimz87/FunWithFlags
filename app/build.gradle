@@ -53,6 +53,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    // Coil
+    implementation "io.coil-kt:coil:$coil_version"
+    implementation "io.coil-kt:coil-svg:$coil_version"
+
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 
