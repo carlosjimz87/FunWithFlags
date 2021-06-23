@@ -26,9 +26,9 @@ For the UI a simple approach was conceived using **Material Design** based compo
 
 ## Tasks
 
-- [ ] Config resources and gradle files.
-- [ ] Setting fragments and viewmodel.
-- [ ] Prepare Bindings and Navigation.
+- [X] Config resources and gradle files.
+- [X] Setting fragments and viewmodel.
+- [X] Prepare Bindings and Navigation.
 - [ ] Setup API client.
 - [ ] Handle data from API.
 - [ ] Improve performance.
