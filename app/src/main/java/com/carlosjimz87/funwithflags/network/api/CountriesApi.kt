@@ -1,6 +1,5 @@
 package com.carlosjimz87.funwithflags.network.api
 
-import com.carlosjimz87.funwithflags.domain.list.Country
 import com.carlosjimz87.funwithflags.network.BASE_URL
 import com.carlosjimz87.funwithflags.network.Endpoints
 import com.carlosjimz87.funwithflags.network.models.CountryDetails

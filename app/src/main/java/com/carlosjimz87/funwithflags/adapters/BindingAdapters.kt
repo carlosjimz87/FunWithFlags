@@ -78,7 +78,7 @@ fun updateListFragmentUI(
             textView?.visibility = View.VISIBLE
             textView?.text = "ERROR"
         }
-        CountriesApiStatus.DONE -> {
+        CountriesApiStatus.SUCCESS -> {
             listView?.visibility = View.VISIBLE
             textView?.visibility = View.GONE
         }

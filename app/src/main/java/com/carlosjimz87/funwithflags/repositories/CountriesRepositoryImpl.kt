@@ -5,7 +5,7 @@ import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.CountryItem
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 
-class CountriesRepositoryImpl(private val service: CountriesApiService) : CountriesRepository {
+open class CountriesRepositoryImpl(private val service: CountriesApiService) : CountriesRepository {
     override suspend fun getAllCountries(): ObserverResponse<List<CountryItem>> {
         return service.getAllCountries()
     }

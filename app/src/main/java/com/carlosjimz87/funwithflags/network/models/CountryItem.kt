@@ -4,5 +4,6 @@ import com.squareup.moshi.Json
 
 data class CountryItem(
     val name: String,
+    val flag: String,
     @Json(name = "alpha3Code") val code: String,
 )

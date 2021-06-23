@@ -44,4 +44,8 @@ class ListFragment : Fragment() {
         Timber.i("ListViewModel created")
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

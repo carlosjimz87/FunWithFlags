@@ -1,6 +1,5 @@
 package com.carlosjimz87.funwithflags.network.models
 
-import org.intellij.lang.annotations.Language
 
 data class CountryDetails(
     val alpha2Code: String,

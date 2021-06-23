@@ -1,6 +1,5 @@
 package com.carlosjimz87.funwithflags.network.responses
 
-
 sealed class ObserverResponse<T>(
     open val data: T? = null,
     open val errorMessage: String? = null,
