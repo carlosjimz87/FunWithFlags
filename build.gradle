@@ -7,6 +7,7 @@ buildscript {
         constraint_version = "2.0.4"
         timber_version = "4.7.1"
         lifecycle_version = "2.3.1"
+        nav_version = "2.3.5"
         legacy_support_version = "1.0.0"
         gradle_plugin_version = "1.5.10"
     }
