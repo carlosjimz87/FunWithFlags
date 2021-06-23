@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosjimz87.funwithflags.domain.list.Country
+import com.carlosjimz87.funwithflags.network.api.ApiManager
 import com.carlosjimz87.funwithflags.network.api.CountriesApi
 import com.carlosjimz87.funwithflags.network.models.CountryItem
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
@@ -16,7 +17,7 @@ import timber.log.Timber
 enum class CountriesApiStatus { LOADING, ERROR, SUCCESS }
 
 class ListViewModel(
-    private val countriesRepository: CountriesRepository = CountriesRepositoryImpl(CountriesApi.retrofitService),
+    private val countriesRepository: CountriesRepository = CountriesRepositoryImpl(),
 ) : ViewModel() {
     private val _status = MutableLiveData<CountriesApiStatus>()
     val status: LiveData<CountriesApiStatus> = _status
@@ -49,7 +50,7 @@ class ListViewModel(
                     Country(
                         name = it.name,
                         code = it.code,
-                        flagUrl = it.flag
+                        flag = it.flag
                     )
                 }
                 Timber.tag("FUN_WITH_FLAGS")

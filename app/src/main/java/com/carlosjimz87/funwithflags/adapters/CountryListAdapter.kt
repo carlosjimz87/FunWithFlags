@@ -20,7 +20,6 @@ class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHo
     fun submitList(countriesList: List<Country>?) {
         countriesList?.let {
             countries = it
-            Timber.i("Setting country list (:${countries.size} countries)")
         }
     }
 
@@ -28,7 +27,6 @@ class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHo
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = countries[position]
-        Timber.i("Binding country:${country.code}")
         holder.bind(country)
     }
 

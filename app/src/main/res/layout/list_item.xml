@@ -46,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:src="@drawable/broken_image"
-                app:imageUrl="@{country.flagUrl}"
+                app:imageUrl="@{country.flag}"
                 tools:ignore="ContentDescription" />
 
             <ImageView

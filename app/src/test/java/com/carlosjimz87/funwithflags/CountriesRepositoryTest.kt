@@ -1,9 +1,10 @@
 package com.carlosjimz87.funwithflags
 
-import com.carlosjimz87.funwithflags.network.api.CountriesApiService
+import com.carlosjimz87.funwithflags.network.api.CountriesApi
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.CountryItem
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
+import com.carlosjimz87.funwithflags.network.services.CountriesServiceImpl
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +21,7 @@ class CountriesRepositoryTest {
     private lateinit var countriesRepository: CountriesRepository
 
     @Mock
-    private lateinit var apiServiceMock: CountriesApiService
+    private lateinit var apiServiceMock: CountriesApi
 
 
     val mockCountriesResponse = listOf(
@@ -38,7 +39,8 @@ class CountriesRepositoryTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
 
-        countriesRepository = object : CountriesRepositoryImpl(apiServiceMock) {
+        val service = CountriesServiceImpl(apiServiceMock)
+        countriesRepository = object : CountriesRepositoryImpl(service) {
 
             override suspend fun getAllCountries(): ObserverResponse<List<CountryItem>> {
                 return ObserverResponse.Success(data = mockCountriesResponse)
