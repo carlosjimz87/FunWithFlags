@@ -31,9 +31,10 @@ For the UI a simple approach was conceived using **Material Design** based compo
 - [X] Prepare Bindings and Navigation.
 - [X] Setup API client with logger.
 - [X] Handle data from API.
-- [/] Visualize details.
+- [X] Visualize details.
 - [/] Improve performance.
-- [ ] Internationalization.
+- [/] Internationalization.
+- [ ] Handle errors.
 
 ## Extras
 
