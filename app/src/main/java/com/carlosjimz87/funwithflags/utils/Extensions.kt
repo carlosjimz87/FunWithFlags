@@ -18,3 +18,20 @@ fun RecyclerView.addDividerShape(context: Context, resource: Int): RecyclerView 
     this.addItemDecoration(dividerItemDecoration)
     return this
 }
+
+private const val MAX_LENGTH_NAME = 20
+
+fun String.justify(): String {
+    if (this.length >= MAX_LENGTH_NAME) {
+        var splitNames = this.split(" ")
+
+        splitNames = splitNames.mapIndexed { index, s ->
+            if (index == splitNames.size / 2 - 1) s.plus("\n") else s.plus(" ")
+        }
+        return splitNames
+            .joinToString(separator = "") {
+                it
+            }.trim()
+    }
+    return this
+}

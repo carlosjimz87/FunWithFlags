@@ -12,6 +12,13 @@ import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
 import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
+import androidx.recyclerview.widget.LinearLayoutManager
+
+import androidx.recyclerview.widget.RecyclerView
+
+
+
+
 
 class ListFragment : Fragment() {
     private val listViewModel: ListViewModel by viewModels()
@@ -32,14 +39,16 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(com.carlosjimz87.funwithflags.R.string.app_name)
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = listViewModel
             countriesRV.adapter = CountryListAdapter()
-
             countriesRV.addDividerShape(requireContext(), R.drawable.divider_shape)
+            fastScroller.setRecyclerView(countriesRV)
+            countriesRV.setOnScrollListener(fastScroller.onScrollListener);
         }
         Timber.i("ListViewModel created")
     }

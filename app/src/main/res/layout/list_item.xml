@@ -25,14 +25,16 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="15dp"
             android:fontFamily="@font/bebasneue"
-            android:maxLength="20"
-            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:minLines="2"
+            android:maxEms="20"
             android:minEms="3"
+            android:singleLine="false"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/black"
             android:textSize="30sp"
             tools:ignore="RelativeOverlap"
-            tools:text="Spain" />
+            tools:text="SPAIN" />
 
         <FrameLayout
             android:layout_width="160dp"
