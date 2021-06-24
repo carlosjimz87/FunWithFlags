@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="details_flag_image">Bandeira de %1$s.</string>
+    <string name="details_region_image">Região %1$s.</string>
+
+    <!-- COUNTY INFO -->
+    <string name="native_prefix">Nome Nativo</string>
+    <string name="capital_prefix">Capital</string>
+    <string name="calling_code_prefix">Prefixo Telefone</string>
+    <string name="population_prefix">População</string>
+    <string name="currency_prefix">Moeda</string>
+    <string name="demonym_prefix">Demônimo</string>
+    <string name="timezone_prefix">Fuso Horário</string>
+
+    <string-array name="population_suffixes">
+        <item>m</item>
+        <item>mõ</item>
+        <item>B</item>
+        <item>T</item>
+        <item>Q</item>
+        <item>Qõ</item>
+    </string-array>
+</resources>

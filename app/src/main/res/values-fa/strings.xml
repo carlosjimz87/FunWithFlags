@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="details_flag_image">%1$sپرچم از</string>
+    <string name="details_region_image">%1$sمنطقه</string>
+
+    <!-- COUNTY INFO -->
+    <string name="native_prefix">اسم بومی</string>
+    <string name="capital_prefix">سرمایه، پایتخت</string>
+    <string name="calling_code_prefix">کد تلفن</string>
+    <string name="population_prefix">جمعیت</string>
+    <string name="currency_prefix">واحد پول</string>
+    <string name="demonym_prefix">نام مستعار</string>
+    <string name="timezone_prefix">منطقه زمانی</string>
+
+    <string-array name="population_suffixes">
+        <item>هزار</item>
+        <item>میلیون</item>
+        <item>میلیارد</item>
+        <item>تریلیون</item>
+        <item>کوادریلیون</item>
+        <item>کوینتیلیون</item>
+    </string-array>
+</resources>

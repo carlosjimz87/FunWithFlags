@@ -13,13 +13,9 @@ import com.carlosjimz87.funwithflags.network.models.CountryProps
 import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
-import com.carlosjimz87.funwithflags.utils.getCompatDrawable
-import com.carlosjimz87.funwithflags.utils.handleResponse
-import com.carlosjimz87.funwithflags.utils.justify
+import com.carlosjimz87.funwithflags.utils.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.math.ln
-import kotlin.math.pow
 
 class DetailsViewModel(
     private val countriesRepository: CountriesRepository = CountriesRepositoryImpl(),
@@ -102,18 +98,10 @@ class DetailsViewModel(
     private fun getPopulation(population: Long?): Pair<String, String>? {
         return population?.let {
             return Pair(first = context.getString(R.string.population_prefix),
-                second = formatPopulation(population))
+                second = formatPopulation(population, context))
         }
     }
 
-    private fun formatPopulation(population: Long): String {
-        if (population < 1000) return population.toString()
-
-        val exp = (ln(population.toDouble()) / ln(1000.0)).toInt();
-        return String.format("%.1f %c",
-            population / 1000.0.pow(exp.toDouble()),
-            context.getString(R.string.population_suffix).toCharArray()[exp - 1]);
-    }
 
     private fun getTimezones(timezones: List<String>): Pair<String, String>? {
         return if (timezones.isNotEmpty()) Pair(context.getString(R.string.timezone_prefix),
@@ -129,16 +117,9 @@ class DetailsViewModel(
         if (currencies.isNotEmpty()) {
             val currency = currencies[0]
             currency.code?.let {
-                return formatCurrency(currency.code, currency.symbol)
+                return formatCurrency(currency.code, currency.symbol, context)
             }
         }
         return null
-    }
-
-    private fun formatCurrency(code: String, symbol: String? = null): Pair<String, String> {
-        symbol?.let {
-            return Pair(context.getString(R.string.currency_prefix), "$code ($it)")
-        }
-        return Pair(context.getString(R.string.currency_prefix), code)
     }
 }
