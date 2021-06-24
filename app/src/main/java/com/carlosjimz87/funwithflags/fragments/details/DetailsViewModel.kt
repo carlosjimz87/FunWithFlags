@@ -9,6 +9,7 @@ import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
 import com.carlosjimz87.funwithflags.utils.handleResponse
+import com.carlosjimz87.funwithflags.utils.justify
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -34,10 +35,10 @@ class DetailsViewModel(
             viewModelScope.launch {
                 val response = countriesRepository.getCountryDetails(code)
                 val data = handleResponse(response, _status, _error)
-                data.let {
-                    _countryDetails.value = it
+                data?.let {
+                    _countryDetails.value = it.copy(name = it.name.justify())
                     Timber.tag("FUN_WITH_FLAGS")
-                        .i("Retrieved country (${it!!.alpha3Code}) successfully!");
+                        .i("Retrieved country (${it.alpha3Code}) successfully!");
                     Timber.tag("FUN_WITH_FLAGS").i("Country: $it");
                 }
             }

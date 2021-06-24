@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -22,15 +21,15 @@ class DetailsFragment : Fragment() {
         val fragmentBinding = DetailsFragmentBinding.inflate(inflater)
 
         binding = fragmentBinding
-        Timber.i("DetailsFragment created")
         return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val code = args.codeCountry
+        Timber.i("Country ($code) sent to Details")
+
         detailsViewModel.getCountryDetails(code)
-        Toast.makeText(requireContext(), "Country passed $code", Toast.LENGTH_SHORT).show()
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = detailsViewModel

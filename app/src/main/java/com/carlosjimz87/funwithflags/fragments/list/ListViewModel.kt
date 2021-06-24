@@ -35,10 +35,10 @@ class ListViewModel(
         viewModelScope.launch {
             val response = countriesRepository.getAllCountries()
             val data = handleResponse(response, _status, _error)
-            data.let {
+            data?.let {
                 _countries.value = it
                 Timber.tag("FUN_WITH_FLAGS")
-                    .i("Retrieved (${it!!.size} countries successfully!");
+                    .i("Retrieved (${it.size} countries successfully!");
                 Timber.tag("FUN_WITH_FLAGS").i("Country: $it");
             }
         }
