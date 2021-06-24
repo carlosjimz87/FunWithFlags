@@ -41,7 +41,7 @@ fun bindRecyclerView(
     data?.let {
         Timber.i("Submitting new list (${data.size} countries)")
         val adapter = recyclerView.adapter as CountryListAdapter
-        adapter.submitList(data)
+        adapter.submitList(data.toMutableList())
     }
 }
 
