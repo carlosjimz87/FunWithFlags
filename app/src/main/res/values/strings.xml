@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Fun With Flags</string>
     <string name="details_image_description">Flag of Country</string>
+
+    <!-- COUNTY INFO -->
+    <string name="capital_prefix">Capital</string>
+    <string name="calling_code_prefix">Calling Code</string>
+    <string name="population_prefix">Population</string>
+    <string name="currency_prefix">Currency</string>
+    <string name="demonym_prefix">Demonym</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.carlosjimz87.funwithflags
 
 import android.os.Bundle
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
+        actionBar?.setDisplayShowTitleEnabled(false)
         setupActionBarWithNavController(navController)
     }
 

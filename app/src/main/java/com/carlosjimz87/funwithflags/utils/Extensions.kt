@@ -1,6 +1,7 @@
 package com.carlosjimz87.funwithflags.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.MutableLiveData
@@ -61,4 +62,9 @@ inline fun <reified T> handleResponse(
             response.data
         }
     }
+}
+
+
+fun Context.getCompatDrawable(id: Int, theme: Resources.Theme? = null): Drawable? {
+    return ResourcesCompat.getDrawable(this.resources, id, theme)
 }

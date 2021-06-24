@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -33,12 +34,12 @@
 
             <RelativeLayout
                 android:id="@+id/id_layout"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:minHeight="68dp"
-                android:maxHeight="100dp"
-                android:padding="2dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/line_shape"
+                android:maxHeight="100dp"
+                android:minHeight="68dp"
+                android:padding="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView">
 
@@ -51,13 +52,13 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/bebasneue"
                     android:gravity="center_vertical"
+                    android:text="@{viewModel.countryDetails.name}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/black"
                     android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="parent"
                     tools:ignore="RelativeOverlap"
-                    android:text="@{viewModel.countryDetails.name}"
                     tools:text="BOLIVIA (PLURINATIONAL\n STATE OF)" />
 
                 <TextView
@@ -69,26 +70,59 @@
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:maxLines="1"
                     android:maxLength="3"
+                    android:maxLines="1"
                     android:singleLine="true"
+                    android:text="@{viewModel.countryDetails.alpha3Code}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintTop_toBottomOf="parent"
                     tools:ignore="RelativeOverlap"
-                    android:text="@{viewModel.countryDetails.alpha3Code}"
                     tools:text="ESP" />
 
             </RelativeLayout>
 
-            <include
+            <LinearLayout
                 android:id="@+id/property_layout"
-                layout="@layout/property_pair"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
+                android:maxHeight="250dp"
+                android:minHeight="250dp"
+                android:orientation="vertical"
+                android:padding="12dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_layout" />
+                app:layout_constraintTop_toBottomOf="@+id/id_layout">
+
+                <include
+                    layout="@layout/property_pair"
+                    bind:prefix="@{viewModel.countryProps.capital.first}"
+                    bind:value="@{viewModel.countryProps.capital.second}" />
+
+                <include
+                    layout="@layout/property_pair"
+                    bind:prefix="@{viewModel.countryProps.population.first}"
+                    bind:value="@{viewModel.countryProps.population.second}" />
+
+                <include
+                    layout="@layout/property_pair"
+                    bind:prefix="@{viewModel.countryProps.demonym.first}"
+                    bind:value="@{viewModel.countryProps.demonym.second}" />
+
+                <include
+                    layout="@layout/property_pair"
+                    bind:prefix="@{viewModel.countryProps.currency.first}"
+                    bind:value="@{viewModel.countryProps.currency.second}" />
+
+
+                <include
+                    layout="@layout/property_pair"
+                    bind:prefix="@{viewModel.countryProps.callingCode.first}"
+                    bind:value="@{viewModel.countryProps.callingCode.second}" />
+
+
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/gmapView"

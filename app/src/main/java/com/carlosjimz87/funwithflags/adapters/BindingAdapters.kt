@@ -61,7 +61,7 @@ fun updateListFragmentUI(
             imageView?.let {
                 it.visibility = View.VISIBLE
                 loadImage(it,
-                    imgDrawable = getCompatDrawable(it.context, R.drawable.loading_image))
+                    imgDrawable = it.context.getCompatDrawable(R.drawable.loading_image))
             }
         }
         else -> {
@@ -69,7 +69,7 @@ fun updateListFragmentUI(
             imageView?.let {
                 it.visibility = View.VISIBLE
                 loadImage(it,
-                    imgDrawable = getCompatDrawable(it.context, R.drawable.broken_image))
+                    imgDrawable = it.context.getCompatDrawable(R.drawable.broken_image))
             }
         }
     }

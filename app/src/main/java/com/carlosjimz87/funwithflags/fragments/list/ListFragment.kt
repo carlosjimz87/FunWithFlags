@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,9 +36,6 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title =
-            getString(com.carlosjimz87.funwithflags.R.string.app_name)
-
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = listViewModel
@@ -55,6 +53,7 @@ class ListFragment : Fragment() {
             countriesRV.setOnScrollListener(fastScroller.onScrollListener);
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

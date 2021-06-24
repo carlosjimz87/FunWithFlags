@@ -28,7 +28,7 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val code = args.codeCountry
         Timber.i("Country ($code) sent to Details")
-
+        detailsViewModel.setContext(requireContext())
         detailsViewModel.getCountryDetails(code)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
