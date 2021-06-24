@@ -1,4 +1,4 @@
-package com.carlosjimz87.funwithflags.fragments.list
+package com.carlosjimz87.funwithflags.fragments.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,31 +7,26 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
+import com.carlosjimz87.funwithflags.databinding.DetailsFragmentBinding
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
 import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
-import androidx.recyclerview.widget.LinearLayoutManager
 
-import androidx.recyclerview.widget.RecyclerView
-
-
-
-
-
-class ListFragment : Fragment() {
-    private val listViewModel: ListViewModel by viewModels()
-    private var binding: ListFragmentBinding? = null
+class DetailsFragment : Fragment() {
+    private val detailsViewModel: DetailsViewModel by viewModels()
+    private var binding: DetailsFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        val fragmentBinding = ListFragmentBinding.inflate(inflater)
+    ): View? {
+        val fragmentBinding = DetailsFragmentBinding.inflate(inflater)
 
         binding = fragmentBinding
-        Timber.i("ListFragment created")
+        Timber.i("DetailsFragment created")
         return fragmentBinding.root
 
     }
@@ -39,16 +34,10 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title =
-            getString(com.carlosjimz87.funwithflags.R.string.app_name)
-
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = listViewModel
-            countriesRV.adapter = CountryListAdapter()
-            countriesRV.addDividerShape(requireContext(), R.drawable.divider_shape)
-            fastScroller.setRecyclerView(countriesRV)
-            countriesRV.setOnScrollListener(fastScroller.onScrollListener);
+//            viewModel = detailsViewModel
+
         }
     }
 

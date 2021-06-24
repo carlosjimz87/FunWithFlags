@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Fun With Flags</string>
+    <string name="details_image_description">Flag of Country</string>
 </resources>
