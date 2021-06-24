@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:padding="2dp"
         android:weightSum="1">
 
         <TextView
@@ -25,11 +26,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_weight="0.3"
+            android:layout_weight="0.4"
             android:fontFamily="@font/montserrat"
             android:gravity="end"
-            android:maxEms="20"
-            android:minEms="3"
             android:minLines="1"
             android:singleLine="true"
             android:textColor="@color/gray"
@@ -44,10 +43,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.6"
             android:fontFamily="@font/montserrat"
-            android:maxEms="10"
-            android:minEms="3"
+            android:maxEms="20"
             android:minLines="1"
             android:paddingStart="8dp"
             android:paddingEnd="0dp"

@@ -26,7 +26,6 @@
                 android:layout_height="250dp"
                 android:contentDescription="@string/details_image_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/broken_image"
                 app:imageUrl="@{viewModel.countryDetails.flag}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,41 +86,82 @@
                 android:id="@+id/property_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxHeight="250dp"
-                android:minHeight="250dp"
-                android:orientation="vertical"
+                android:maxHeight="200dp"
+                android:minHeight="200dp"
+                android:orientation="horizontal"
                 android:padding="12dp"
+                android:weightSum="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_layout">
+                app:layout_constraintTop_toBottomOf="@+id/id_layout"
+                android:baselineAligned="false">
 
-                <include
-                    layout="@layout/property_pair"
-                    bind:prefix="@{viewModel.countryProps.capital.first}"
-                    bind:value="@{viewModel.countryProps.capital.second}" />
+                <LinearLayout
+                    android:id="@+id/info_layout"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-                <include
-                    layout="@layout/property_pair"
-                    bind:prefix="@{viewModel.countryProps.population.first}"
-                    bind:value="@{viewModel.countryProps.population.second}" />
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.capital.first}"
+                        bind:value="@{viewModel.countryProps.capital.second}" />
 
-                <include
-                    layout="@layout/property_pair"
-                    bind:prefix="@{viewModel.countryProps.demonym.first}"
-                    bind:value="@{viewModel.countryProps.demonym.second}" />
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.population.first}"
+                        bind:value="@{viewModel.countryProps.population.second}" />
 
-                <include
-                    layout="@layout/property_pair"
-                    bind:prefix="@{viewModel.countryProps.currency.first}"
-                    bind:value="@{viewModel.countryProps.currency.second}" />
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.demonym.first}"
+                        bind:value="@{viewModel.countryProps.demonym.second}" />
 
-
-                <include
-                    layout="@layout/property_pair"
-                    bind:prefix="@{viewModel.countryProps.callingCode.first}"
-                    bind:value="@{viewModel.countryProps.callingCode.second}" />
-
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.currency.first}"
+                        bind:value="@{viewModel.countryProps.currency.second}" />
 
 
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.callingCode.first}"
+                        bind:value="@{viewModel.countryProps.callingCode.second}" />
+
+
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.nativeName.first}"
+                        bind:value="@{viewModel.countryProps.nativeName.second}" />
+
+                    <include
+                        layout="@layout/property_pair"
+                        bind:prefix="@{viewModel.countryProps.timezone.first}"
+                        bind:value="@{viewModel.countryProps.timezone.second}" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/region_layout"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="60dp"
+                    android:minHeight="60dp"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/regionView"
+                        android:layout_width="50dp"
+                        android:layout_gravity="end"
+                        android:layout_height="50dp"
+                        android:scaleType="fitXY"
+                        android:contentDescription="@string/details_image_description"
+                        app:imageDrawable="@{viewModel.countryProps.region}"
+                        tools:src="@drawable/ic_america"/>
+
+                </LinearLayout>
             </LinearLayout>
 
             <ImageView

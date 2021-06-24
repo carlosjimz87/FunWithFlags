@@ -6,6 +6,7 @@
     <color name="secondary_light">#42679D</color>
     <color name="black">#FF000000</color>
     <color name="gray">#615B5B</color>
+    <color name="light_gray">#BAB7B7</color>
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

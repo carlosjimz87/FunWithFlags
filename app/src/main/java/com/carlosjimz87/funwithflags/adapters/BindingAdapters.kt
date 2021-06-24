@@ -1,5 +1,6 @@
 package com.carlosjimz87.funwithflags.adapters
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -14,6 +15,11 @@ import timber.log.Timber
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     loadImage(imgView, imgUrl)
+}
+
+@BindingAdapter("imageDrawable")
+fun bindDrawable(imgView: ImageView, drawable: Drawable?) {
+    loadImage(imgView, imgDrawable= drawable)
 }
 
 @BindingAdapter("countriesState")
