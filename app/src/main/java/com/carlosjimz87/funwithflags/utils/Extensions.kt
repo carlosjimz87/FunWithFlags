@@ -3,8 +3,11 @@ package com.carlosjimz87.funwithflags.utils
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.carlosjimz87.funwithflags.fragments.list.CountriesApiStatus
+import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 
 fun RecyclerView.addDividerShape(context: Context, resource: Int): RecyclerView {
     val dividerItemDecoration = DividerItemDecoration(context,
@@ -34,4 +37,28 @@ fun String.justify(): String {
             }.trim()
     }
     return this
+}
+
+inline fun <reified T> handleResponse(
+    response: ObserverResponse<T>,
+    status: MutableLiveData<CountriesApiStatus>,
+    error: MutableLiveData<String>,
+): T? {
+
+    return when (response) {
+        is ObserverResponse.Loading -> {
+            status.value = CountriesApiStatus.LOADING
+            response.data
+        }
+        is ObserverResponse.Error -> {
+            status.value = CountriesApiStatus.ERROR
+            val errorMsg = response.exception?.message + response.errorMessage
+            error.value = errorMsg
+            response.data
+        }
+        is ObserverResponse.Success -> {
+            status.value = CountriesApiStatus.SUCCESS
+            response.data
+        }
+    }
 }

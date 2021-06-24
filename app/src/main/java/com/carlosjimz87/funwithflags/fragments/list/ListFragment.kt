@@ -7,18 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
+import com.carlosjimz87.funwithflags.adapters.SelectedCountryListener
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
+import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
-import androidx.recyclerview.widget.LinearLayoutManager
-
-import androidx.recyclerview.widget.RecyclerView
-
-
-
-
 
 class ListFragment : Fragment() {
     private val listViewModel: ListViewModel by viewModels()
@@ -45,7 +41,15 @@ class ListFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = listViewModel
-            countriesRV.adapter = CountryListAdapter()
+
+            countriesRV.adapter = CountryListAdapter(object : SelectedCountryListener {
+                override fun onCountryClicked(country: Country) {
+                    val action =
+                        ListFragmentDirections.actionListFragmentToDetailsFragment(country.code)
+                    findNavController().navigate(action)
+                }
+            })
+
             countriesRV.addDividerShape(requireContext(), R.drawable.divider_shape)
             fastScroller.setRecyclerView(countriesRV)
             countriesRV.setOnScrollListener(fastScroller.onScrollListener);

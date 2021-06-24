@@ -3,11 +3,9 @@ package com.carlosjimz87.funwithflags.network.api
 import com.carlosjimz87.funwithflags.network.BASE_URL
 import com.carlosjimz87.funwithflags.network.Endpoints
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
-import com.carlosjimz87.funwithflags.network.models.CountryItem
+import com.carlosjimz87.funwithflags.network.models.Country
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -29,7 +27,7 @@ private val retrofit = Retrofit.Builder()
 
 interface CountriesApi {
     @GET("$api_type/$api_version/${Endpoints.GET_ALL_COUNTRIES}")
-    suspend fun getAllCountries(): List<CountryItem>
+    suspend fun getAllCountries(): List<Country>
 
     @GET("$api_type/$api_version/${Endpoints.GET_COUNTRY_DETAILS}")
     suspend fun getCountryDetails(@Path(value = "country_code") countryId: String): CountryDetails

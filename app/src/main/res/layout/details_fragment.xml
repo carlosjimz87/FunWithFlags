@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.carlosjimz87.funwithflags.fragments.details.DetailsViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +25,8 @@
                 android:layout_height="250dp"
                 android:contentDescription="@string/details_image_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_spain"
+                android:src="@drawable/broken_image"
+                app:imageUrl="@{viewModel.countryDetails.flag}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,6 +58,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="parent"
                     tools:ignore="RelativeOverlap"
+                    android:text="@{viewModel.countryDetails.name}"
                     tools:text="SPAIN" />
 
                 <TextView
@@ -70,6 +79,7 @@
                     android:textSize="20sp"
                     app:layout_constraintTop_toBottomOf="parent"
                     tools:ignore="RelativeOverlap"
+                    android:text="@{viewModel.countryDetails.alpha3Code}"
                     tools:text="ES" />
 
             </RelativeLayout>

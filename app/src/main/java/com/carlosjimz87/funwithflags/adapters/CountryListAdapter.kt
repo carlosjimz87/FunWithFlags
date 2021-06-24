@@ -1,17 +1,20 @@
 package com.carlosjimz87.funwithflags.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.databinding.ListItemBinding
-import com.carlosjimz87.funwithflags.domain.list.Country
+import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.utils.justify
+import timber.log.Timber
 
-class CountryListAdapter :
+interface SelectedCountryListener {
+    fun onCountryClicked(country: Country)
+}
+
+class CountryListAdapter(private val selectedCountryListener: SelectedCountryListener) :
     ListAdapter<Country, CountryListAdapter.CountryViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
@@ -40,7 +43,8 @@ class CountryListAdapter :
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = currentList[position]
-        holder.bind(country, holder)
+
+        holder.bind(country, selectedCountryListener)
     }
 
     class CountryViewHolder(
@@ -49,20 +53,16 @@ class CountryListAdapter :
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(country: Country, holder: CountryViewHolder) {
+        fun bind(country: Country, listener: SelectedCountryListener) {
             with(binding) {
                 this.country = country
                 countryName.text = country.name.justify()
                 countryLayout.setOnClickListener {
-                    val context = holder.itemView.context
-                    navigateToFragment(context, country.code)
+                    listener.onCountryClicked(country)
+                    Timber.i("Country ${country.code} clicked")
                 }
                 executePendingBindings()
             }
-        }
-
-        private fun navigateToFragment(context: Context, code: String) {
-            Toast.makeText(context, "Country $code clicked", Toast.LENGTH_LONG).show()
         }
     }
 

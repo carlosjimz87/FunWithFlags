@@ -2,7 +2,7 @@ package com.carlosjimz87.funwithflags
 
 import com.carlosjimz87.funwithflags.network.api.CountriesApi
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
-import com.carlosjimz87.funwithflags.network.models.CountryItem
+import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import com.carlosjimz87.funwithflags.network.services.CountriesServiceImpl
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
@@ -25,14 +25,14 @@ class CountriesRepositoryTest {
 
 
     val mockCountriesResponse = listOf(
-        CountryItem("Argentina", "ARG", "https://restcountries.eu/data/arg.svg"),
-        CountryItem("Brazil", "BRA", "https://restcountries.eu/data/bra.svg"),
-        CountryItem("Canada", "CAN", "https://restcountries.eu/data/can.svg"),
-        CountryItem("Colombia", "COL", "https://restcountries.eu/data/col.svg"),
-        CountryItem("France", "FRA", "https://restcountries.eu/data/fra.svg"),
-        CountryItem("Spain", "ESP", "https://restcountries.eu/data/esp.svg"),
-        CountryItem("Great Britain", "GBR", "https://restcountries.eu/data/gbr.svg"),
-        CountryItem("United States", "USA", "https://restcountries.eu/data/usa.svg"),
+        Country("Argentina", "ARG", "https://restcountries.eu/data/arg.svg"),
+        Country("Brazil", "BRA", "https://restcountries.eu/data/bra.svg"),
+        Country("Canada", "CAN", "https://restcountries.eu/data/can.svg"),
+        Country("Colombia", "COL", "https://restcountries.eu/data/col.svg"),
+        Country("France", "FRA", "https://restcountries.eu/data/fra.svg"),
+        Country("Spain", "ESP", "https://restcountries.eu/data/esp.svg"),
+        Country("Great Britain", "GBR", "https://restcountries.eu/data/gbr.svg"),
+        Country("United States", "USA", "https://restcountries.eu/data/usa.svg"),
     )
 
     @Before
@@ -42,7 +42,7 @@ class CountriesRepositoryTest {
         val service = CountriesServiceImpl(apiServiceMock)
         countriesRepository = object : CountriesRepositoryImpl(service) {
 
-            override suspend fun getAllCountries(): ObserverResponse<List<CountryItem>> {
+            override suspend fun getAllCountries(): ObserverResponse<List<Country>> {
                 return ObserverResponse.Success(data = mockCountriesResponse)
             }
 
