@@ -1,7 +1,9 @@
 package com.carlosjimz87.funwithflags.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.databinding.ListItemBinding
 import com.carlosjimz87.funwithflags.domain.list.Country
@@ -26,7 +28,7 @@ class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHo
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = countries[position]
-        holder.bind(country)
+        holder.bind(country, holder)
     }
 
     class CountryViewHolder(
@@ -35,13 +37,22 @@ class CountryListAdapter : RecyclerView.Adapter<CountryListAdapter.CountryViewHo
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(country: Country) {
+        fun bind(country: Country, holder: CountryViewHolder) {
             with(binding) {
                 this.country = country
                 countryName.text = country.name.justify()
+                countryLayout.setOnClickListener{
+                    val context =holder.itemView.context
+                    navigateToFragment(context, country.code)
+                }
                 executePendingBindings()
             }
         }
+
+        private fun navigateToFragment(context: Context, code:String){
+            Toast.makeText( context,"Country $code clicked", Toast.LENGTH_LONG).show()
+        }
     }
+
 
 }
