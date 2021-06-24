@@ -11,31 +11,50 @@ import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.utils.getCompatDrawable
 import com.carlosjimz87.funwithflags.utils.loadImage
 import timber.log.Timber
+import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
-    loadImage(imgView, imgUrl)
+    loadImage(imgView, imgUrl, imgDrawable = null, placeholders = true)
 }
 
 @BindingAdapter("imageDrawable")
 fun bindDrawable(imgView: ImageView, drawable: Drawable?) {
-    loadImage(imgView, imgDrawable= drawable)
+    loadImage(imgView, imgDrawable = drawable, placeholders = false)
 }
 
-@BindingAdapter("countriesState")
-fun bindViewState(
-    stateView: ImageView,
+@BindingAdapter("scrollerState")
+fun bindScrollerState(
+    view: VerticalRecyclerViewFastScroller,
     status: CountriesApiStatus?,
 ) {
-    updateListFragmentUI(imageView = stateView, status = status)
+    showLoadingState(activeView = view, status = status)
 }
+
+@BindingAdapter("activeViewState")
+fun bindActiveViewState(
+    view: View,
+    status: CountriesApiStatus?,
+) {
+    showLoadingState(activeView = view, status = status)
+}
+
+
+@BindingAdapter("inactiveViewState")
+fun bindInactiveViewState(
+    view: ImageView,
+    status: CountriesApiStatus?,
+) {
+    showLoadingState(inactiveView = view, status = status)
+}
+
 
 @BindingAdapter("listState")
 fun bindListState(
     listView: RecyclerView,
     status: CountriesApiStatus?,
 ) {
-    updateListFragmentUI(listView = listView, status = status)
+    showLoadingState(activeView = listView, status = status)
 }
 
 
@@ -52,30 +71,32 @@ fun bindRecyclerView(
 }
 
 
-fun updateListFragmentUI(
+fun showLoadingState(
     status: CountriesApiStatus?,
-    listView: RecyclerView? = null,
-    imageView: ImageView? = null,
+    activeView: View? = null,
+    inactiveView: View? = null,
 ) {
     when (status) {
         CountriesApiStatus.SUCCESS -> {
-            listView?.visibility = View.VISIBLE
-            imageView?.visibility = View.GONE
+            activeView?.visibility = View.VISIBLE
+            inactiveView?.visibility = View.GONE
         }
         CountriesApiStatus.LOADING -> {
-            listView?.visibility = View.GONE
-            imageView?.let {
+            activeView?.visibility = View.GONE
+            inactiveView?.let {
                 it.visibility = View.VISIBLE
-                loadImage(it,
-                    imgDrawable = it.context.getCompatDrawable(R.drawable.loading_image))
+                loadImage(it as ImageView,
+                    imgDrawable = it.context.getCompatDrawable(R.drawable.loading_animator),
+                    placeholders = false)
             }
         }
         else -> {
-            listView?.visibility = View.GONE
-            imageView?.let {
+            activeView?.visibility = View.GONE
+            inactiveView?.let {
                 it.visibility = View.VISIBLE
-                loadImage(it,
-                    imgDrawable = it.context.getCompatDrawable(R.drawable.broken_image))
+                loadImage(it as ImageView,
+                    imgDrawable = it.context.getCompatDrawable(R.drawable.broken_image),
+                    placeholders = false)
             }
         }
     }

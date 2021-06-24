@@ -10,26 +10,36 @@ import coil.load
 import com.carlosjimz87.funwithflags.R
 
 
-fun loadImage(imgView: ImageView, imgUrl: String? = null, imgDrawable: Drawable? = null) {
+fun loadImage(
+    imgView: ImageView,
+    imgUrl: String? = null,
+    imgDrawable: Drawable? = null,
+    placeholders: Boolean,
+) {
 
     with(getLoader(imgView.context)) {
         imgUrl?.let {
             val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
             imgView.load(imgUri, this) {
-                placeholder(R.drawable.loading_animator)
-                error(R.drawable.broken_image)
+                if (placeholders) {
+                    placeholder(R.drawable.loading_animator)
+                    error(R.drawable.broken_image)
+                }
             }
             return@let
         }
 
         imgDrawable?.let {
             imgView.load(imgDrawable, this) {
-                placeholder(R.drawable.loading_animator)
-                error(R.drawable.broken_image)
+                if (placeholders) {
+                    placeholder(R.drawable.loading_animator)
+                    error(R.drawable.broken_image)
+                }
             }
             return@let
         }
     }
+
 }
 
 fun getLoader(context: Context): ImageLoader {

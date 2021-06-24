@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Fun With Flags</string>
-    <string name="details_image_description">Flag of Country</string>
+
+    <string name="details_flag_image">Flag of %1$s.</string>
+    <string name="details_region_image">Region %1$s.</string>
 
     <!-- COUNTY INFO -->
     <string name="native_prefix">Native Name</string>
@@ -10,4 +12,5 @@
     <string name="currency_prefix">Currency</string>
     <string name="demonym_prefix">Demonym</string>
     <string name="timezone_prefix">Timezone</string>
+    <string name="population_suffix">kMBTPE</string>
 </resources>

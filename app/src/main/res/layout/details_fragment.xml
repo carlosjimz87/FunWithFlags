@@ -20,16 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:contentDescription="@string/details_image_description"
+                android:contentDescription="@{@string/details_flag_image(viewModel.countryDetails.name)}"
                 android:scaleType="fitXY"
+                app:activeViewState="@{viewModel.status}"
                 app:imageUrl="@{viewModel.countryDetails.flag}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:src="@drawable/broken_image" />
 
             <RelativeLayout
                 android:id="@+id/id_layout"
@@ -39,6 +43,7 @@
                 android:maxHeight="100dp"
                 android:minHeight="68dp"
                 android:padding="2dp"
+                app:activeViewState="@{viewModel.status}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView">
 
@@ -58,7 +63,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="parent"
                     tools:ignore="RelativeOverlap"
-                    tools:text="BOLIVIA (PLURINATIONAL\n STATE OF)" />
+                    tools:text="SPAIN" />
 
                 <TextView
                     android:id="@+id/country_code"
@@ -86,20 +91,21 @@
                 android:id="@+id/property_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:maxHeight="200dp"
                 android:minHeight="200dp"
                 android:orientation="horizontal"
                 android:padding="12dp"
                 android:weightSum="1"
+                app:activeViewState="@{viewModel.status}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_layout"
-                android:baselineAligned="false">
+                app:layout_constraintTop_toBottomOf="@+id/id_layout">
 
                 <LinearLayout
                     android:id="@+id/info_layout"
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
                     android:orientation="vertical"
                     android:padding="12dp">
 
@@ -141,11 +147,12 @@
                         bind:value="@{viewModel.countryProps.timezone.second}" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/region_layout"
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
                     android:maxHeight="60dp"
                     android:minHeight="60dp"
                     android:orientation="vertical"
@@ -154,12 +161,12 @@
                     <ImageView
                         android:id="@+id/regionView"
                         android:layout_width="50dp"
-                        android:layout_gravity="end"
                         android:layout_height="50dp"
+                        android:layout_gravity="end"
+                        android:contentDescription="@{@string/details_region_image(viewModel.countryDetails.name)}"
                         android:scaleType="fitXY"
-                        android:contentDescription="@string/details_image_description"
                         app:imageDrawable="@{viewModel.countryProps.region}"
-                        tools:src="@drawable/ic_america"/>
+                        tools:src="@drawable/ic_america" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -168,13 +175,26 @@
                 android:id="@+id/gmapView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:contentDescription="@string/details_image_description"
+                android:importantForAccessibility="no"
                 android:scaleType="fitXY"
                 android:src="@drawable/map"
+                app:activeViewState="@{viewModel.status}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/property_layout" />
+                app:layout_constraintTop_toBottomOf="@+id/property_layout"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageView
+                android:id="@+id/inactive_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:visibility="gone"
+                app:inactiveViewState="@{viewModel.status}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </ScrollView>
+
 </layout>

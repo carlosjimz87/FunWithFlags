@@ -112,7 +112,7 @@ class DetailsViewModel(
         val exp = (ln(population.toDouble()) / ln(1000.0)).toInt();
         return String.format("%.1f %c",
             population / 1000.0.pow(exp.toDouble()),
-            "kMBTPE".toCharArray()[exp - 1]);
+            context.getString(R.string.population_suffix).toCharArray()[exp - 1]);
     }
 
     private fun getTimezones(timezones: List<String>): Pair<String, String>? {
