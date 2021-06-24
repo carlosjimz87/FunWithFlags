@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosjimz87.funwithflags.R
-import com.carlosjimz87.funwithflags.fragments.list.CountriesApiStatus
+import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.CountryProps
 import com.carlosjimz87.funwithflags.network.models.Currency

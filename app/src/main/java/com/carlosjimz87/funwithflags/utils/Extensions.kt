@@ -7,7 +7,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.carlosjimz87.funwithflags.fragments.list.CountriesApiStatus
+import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 
 fun RecyclerView.addDividerShape(context: Context, resource: Int): RecyclerView {

@@ -2,8 +2,8 @@ package com.carlosjimz87.funwithflags.network.api
 
 import com.carlosjimz87.funwithflags.network.BASE_URL
 import com.carlosjimz87.funwithflags.network.Endpoints
-import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.Country
+import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

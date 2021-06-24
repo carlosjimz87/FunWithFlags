@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.R
-import com.carlosjimz87.funwithflags.fragments.list.CountriesApiStatus
+import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.utils.getCompatDrawable
 import com.carlosjimz87.funwithflags.utils.loadImage

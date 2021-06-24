@@ -33,13 +33,14 @@ For the UI a simple approach was conceived using **Material Design** based compo
 - [X] Handle data from API.
 - [X] Visualize details.
 - [/] Improve performance.
-- [/] Internationalization.
-- [ ] Handle errors.
+- [X] Internationalization.
+- [/] Handle errors.
 
 ## Extras
 
+- [/] RTL Languages.
 - [ ] Filters.
-- [ ] LTR Languages.
+- [ ] Cacheing.
 - [ ] Animations.
 - [ ] Splash.
 - [ ] Google Map.
