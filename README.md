@@ -30,8 +30,9 @@ For the UI a simple approach was conceived using **Material Design** based compo
 - [X] Setting fragments and viewmodel.
 - [X] Prepare Bindings and Navigation.
 - [X] Setup API client with logger.
-- [ ] Handle data from API.
-- [ ] Improve performance.
+- [X] Handle data from API.
+- [/] Visualize details.
+- [/] Improve performance.
 - [ ] Internationalization.
 
 ## Extras
