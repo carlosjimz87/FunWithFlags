@@ -8,8 +8,8 @@ import org.junit.Test
 class ExtensionsTest {
     @Test
     fun testJustifyString() {
-        val text = "SPAIN SPAIN (VR) SPAIN SPAIN SPAIN"
-        val expectedText = "SPAIN SPAIN (VR)\nSPAIN SPAIN SPAIN"
+        val text = "SPAIN FRANCE (VR) USA POLAND PORTUGAL"
+        val expectedText = "SPAIN FRANCE (VR)\nUSA POLAND PORTUGAL"
         Assert.assertEquals(expectedText, text.justify())
     }
 }
