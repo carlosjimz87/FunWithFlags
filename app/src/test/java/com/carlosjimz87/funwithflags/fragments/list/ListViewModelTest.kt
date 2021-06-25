@@ -30,8 +30,7 @@ class ListViewModelTest {
     @Mock
     private lateinit var apiServiceMock: CountriesApi
 
-
-    private val mockCountriesResponse = listOf(
+    val mockCountriesResponse = listOf(
         Country("Argentina", "ARG", "https://restcountries.eu/data/arg.svg", null),
         Country("Brazil", "BRA", "https://restcountries.eu/data/bra.svg", null),
         Country("Canada", "CAN", "https://restcountries.eu/data/can.svg", null),
