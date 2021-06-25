@@ -14,10 +14,7 @@ import com.carlosjimz87.funwithflags.network.models.CountryProps
 import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
-import com.carlosjimz87.funwithflags.utils.formatCurrency
-import com.carlosjimz87.funwithflags.utils.formatPopulation
-import com.carlosjimz87.funwithflags.utils.getCompatDrawable
-import com.carlosjimz87.funwithflags.utils.handleResponse
+import com.carlosjimz87.funwithflags.utils.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -38,6 +35,9 @@ class DetailsViewModel(
     private val _countryProps = MutableLiveData<CountryProps>()
     val countryProps: LiveData<CountryProps> = _countryProps
 
+    private val _position = MutableLiveData<Pair<String, List<Double>>>()
+    val position: LiveData<Pair<String, List<Double>>> = _position
+
     fun setContext(context: Context) {
         this.context = context
     }
@@ -50,8 +50,10 @@ class DetailsViewModel(
                 val response = countriesRepository.getCountryDetails(code)
                 val data = handleResponse(response, _status, _error)
                 data?.let {
-                    _countryDetails.value = it.copy(name = NameAdapter.getCountryName(it, context))
+                    val translatedName = NameAdapter.getCountryName(it, context).justify()
+                    _countryDetails.value = it.copy(name = translatedName)
                     _countryProps.value = getCountryProps(it)
+                    _position.value = Pair(translatedName, it.latlng)
                     Timber.tag("FUN_WITH_FLAGS")
                         .i("Retrieved country (${it.alpha3Code}) successfully!");
                     Timber.tag("FUN_WITH_FLAGS").i("Country: $it");

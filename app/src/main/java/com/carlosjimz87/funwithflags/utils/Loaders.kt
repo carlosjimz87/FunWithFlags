@@ -18,6 +18,7 @@ fun loadImage(
 ) {
 
     with(getLoader(imgView.context)) {
+
         imgUrl?.let {
             val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
             imgView.load(imgUri, this) {
