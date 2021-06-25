@@ -59,6 +59,7 @@
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/black"
             android:textSize="30sp"
+            android:text="@{country.name}"
             tools:ignore="RelativeOverlap"
             tools:text="UNITED STATES\n MINOR OUTLYING ISLANDS" />
 

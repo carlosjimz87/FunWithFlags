@@ -53,7 +53,7 @@ class DetailsViewModel(
                 val response = countriesRepository.getCountryDetails(code)
                 val data = handleResponse(response, _status, _error)
                 data?.let {
-                    _countryDetails.value = it.copy(name = NameAdapter.getCountryName(it, context))
+                    _countryDetails.value = it.copy(name = NameAdapter.getTranslatedName(it, context))
                     _countryProps.value = getCountryProps(it)
                     Timber.tag("FUN_WITH_FLAGS")
                         .i("Retrieved country (${it.alpha3Code}) successfully!");

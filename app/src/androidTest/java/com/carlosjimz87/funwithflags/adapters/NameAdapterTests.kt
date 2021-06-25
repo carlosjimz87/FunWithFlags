@@ -34,13 +34,13 @@ class NameAdapterTests {
     )
 
     @Test
-    fun getCountryNameTest() {
+    fun getTranslatedNameTest() {
         val locales = listOf("en", "es", "de", "it", "fr", "pt", "fa", "ja")
         val names =
             listOf("Spain", "España", "Spanien", "Spagna", "Espagne", "Espanha", "اسپانیا", "スペイン")
         for (pair in locales.zip(names)) {
             Languages.setLocale(appContext, pair.first)
-            val name = NameAdapter.getCountryName(country, appContext)
+            val name = NameAdapter.getTranslatedName(country, appContext)
             Assert.assertEquals(pair.second, name)
         }
     }

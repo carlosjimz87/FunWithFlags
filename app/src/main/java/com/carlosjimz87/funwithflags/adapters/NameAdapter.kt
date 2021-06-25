@@ -8,7 +8,7 @@ import com.carlosjimz87.funwithflags.utils.Languages
 class NameAdapter {
 
     companion object {
-        fun getCountryName(country: Country, context: Context): String {
+        fun getTranslatedName(country: Country, context: Context): String {
             country.translations?.let {
                 val translations = it.toMapString()
                 val locale = Languages.getLocale(context)
@@ -18,7 +18,7 @@ class NameAdapter {
             return country.name
         }
 
-        fun getCountryName(country: CountryDetails, context: Context): String {
+        fun getTranslatedName(country: CountryDetails, context: Context): String {
             country.translations?.let {
                 val translations = it.toMapString()
                 val locale = Languages.getLocale(context)
