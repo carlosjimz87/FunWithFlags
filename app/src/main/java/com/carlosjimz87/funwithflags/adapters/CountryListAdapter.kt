@@ -44,7 +44,7 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = currentList[position]
 
-        holder.bind(country, selectedCountryListener)
+        holder.bind(holder, country, selectedCountryListener)
     }
 
     class CountryViewHolder(
@@ -53,10 +53,11 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(country: Country, listener: SelectedCountryListener) {
+        fun bind(holder: CountryViewHolder, country: Country, listener: SelectedCountryListener) {
             with(binding) {
                 this.country = country
-                countryName.text = country.name.justify()
+                val name =NameAdapter.getCountryName(country, holder.itemView.context).justify()
+                countryName.text = name
                 countryLayout.setOnClickListener {
                     listener.onCountryClicked(country)
                     Timber.i("Country ${country.code} clicked")

@@ -7,13 +7,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosjimz87.funwithflags.R
+import com.carlosjimz87.funwithflags.adapters.NameAdapter
 import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.CountryProps
 import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
-import com.carlosjimz87.funwithflags.utils.*
+import com.carlosjimz87.funwithflags.utils.formatCurrency
+import com.carlosjimz87.funwithflags.utils.formatPopulation
+import com.carlosjimz87.funwithflags.utils.getCompatDrawable
+import com.carlosjimz87.funwithflags.utils.handleResponse
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -46,7 +50,7 @@ class DetailsViewModel(
                 val response = countriesRepository.getCountryDetails(code)
                 val data = handleResponse(response, _status, _error)
                 data?.let {
-                    _countryDetails.value = it.copy(name = it.name.justify())
+                    _countryDetails.value = it.copy(name = NameAdapter.getCountryName(it, context))
                     _countryProps.value = getCountryProps(it)
                     Timber.tag("FUN_WITH_FLAGS")
                         .i("Retrieved country (${it.alpha3Code}) successfully!");
@@ -109,7 +113,7 @@ class DetailsViewModel(
     }
 
     private fun getCallingCodes(codes: List<String>): Pair<String, String>? {
-        return if (codes.isNotEmpty()) Pair(context.getString(R.string.calling_code_prefix),
+        return if (codes.isNotEmpty() && codes[0].isNotEmpty()) Pair(context.getString(R.string.calling_code_prefix),
             "+${codes[0]}") else null
     }
 

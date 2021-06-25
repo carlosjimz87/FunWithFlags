@@ -7,7 +7,7 @@
     <!-- COUNTY INFO -->
     <string name="native_prefix">Nom Natif</string>
     <string name="capital_prefix">Capitale</string>
-    <string name="calling_code_prefix">Indicatif téléphonique</string>
+    <string name="calling_code_prefix">Indicatif téléph.</string>
     <string name="population_prefix">Population</string>
     <string name="currency_prefix">Devise</string>
     <string name="demonym_prefix">Démonyme</string>
