@@ -1,8 +1,8 @@
 package com.carlosjimz87.funwithflags.network
 
 import com.carlosjimz87.funwithflags.network.api.CountriesApi
-import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.Country
+import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import com.carlosjimz87.funwithflags.network.services.CountriesServiceImpl
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository

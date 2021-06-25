@@ -1,6 +1,5 @@
 package com.carlosjimz87.funwithflags.utils
 
-import com.carlosjimz87.funwithflags.utils.justify
 import org.junit.Assert
 import org.junit.Test
 

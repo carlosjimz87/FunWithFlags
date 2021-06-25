@@ -1,9 +1,10 @@
 package com.carlosjimz87.funwithflags.fragments.details
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.carlosjimz87.funwithflags.fragments.details.DetailsViewModel
 import com.carlosjimz87.funwithflags.network.api.CountriesApi
-import com.carlosjimz87.funwithflags.network.models.*
+import com.carlosjimz87.funwithflags.network.models.Country
+import com.carlosjimz87.funwithflags.network.models.CountryDetails
+import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import com.carlosjimz87.funwithflags.network.services.CountriesServiceImpl
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
@@ -87,8 +88,10 @@ class DetailsViewModelTest {
             }
             viewModel.countryProps.observeForever {
 
-                Assert.assertEquals(formatPopulationHelper(mockCountryDetails.population!!), it.population)
-                Assert.assertEquals(formatCurrencyHelper(mockCountryDetails.currencies[0].code!!), it.currency)
+                Assert.assertEquals(formatPopulationHelper(mockCountryDetails.population!!),
+                    it.population)
+                Assert.assertEquals(formatCurrencyHelper(mockCountryDetails.currencies[0].code!!),
+                    it.currency)
             }
         }
     }
