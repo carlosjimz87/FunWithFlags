@@ -1,12 +1,16 @@
 package com.carlosjimz87.funwithflags.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.databinding.ListItemBinding
 import com.carlosjimz87.funwithflags.network.models.Country
+import com.carlosjimz87.funwithflags.utils.filterListCountry
 import com.carlosjimz87.funwithflags.utils.justify
 import timber.log.Timber
 
@@ -15,7 +19,10 @@ interface SelectedCountryListener {
 }
 
 class CountryListAdapter(private val selectedCountryListener: SelectedCountryListener) :
-    ListAdapter<Country, CountryListAdapter.CountryViewHolder>(DiffCallback()) {
+    ListAdapter<Country, CountryListAdapter.CountryViewHolder>(DiffCallback()), Filterable {
+    private var countryFilter: CountryFilter? = CountryFilter()
+    private var fullList: MutableList<Country>? = null
+    private var filterEnabled = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         return CountryViewHolder(ListItemBinding.inflate(
@@ -39,11 +46,15 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
         super.submitList(list)
     }
 
+    fun submitAllLists(currentList: MutableList<Country>?, fullList: MutableList<Country>? = null) {
+        submitList(currentList)
+        this.fullList = fullList
+    }
+
     override fun getItemCount(): Int = currentList.size
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = currentList[position]
-
         holder.bind(holder, country, selectedCountryListener)
     }
 
@@ -55,9 +66,8 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
 
         fun bind(holder: CountryViewHolder, country: Country, listener: SelectedCountryListener) {
             with(binding) {
-                this.country = country
-                val name =NameAdapter.getCountryName(country, holder.itemView.context).justify()
-                countryName.text = name
+                this.country = country.copy(name = getTranslatedName(country,
+                    holder.itemView.context).justify())
                 countryLayout.setOnClickListener {
                     listener.onCountryClicked(country)
                     Timber.i("Country ${country.code} clicked")
@@ -67,5 +77,31 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
         }
     }
 
+    override fun getFilter(): Filter = countryFilter as Filter
 
+    inner class CountryFilter(
+    ) : Filter() {
+        override fun performFiltering(constraint: CharSequence?): FilterResults {
+            filterEnabled = false
+            val fList: MutableList<Country>
+            val results = FilterResults()
+            submitList(fullList)
+            results.values = currentList
+
+            if (constraint != null && constraint.length >= 2) {
+                filterEnabled = true
+                fList = filterListCountry(constraint, currentList)
+                results.values = fList
+            }
+            return results
+        }
+
+        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+            if (filterEnabled) {
+                val toSubmit = results!!.values as MutableList<Country>
+                submitList(toSubmit)
+                notifyDataSetChanged()
+            }
+        }
+    }
 }

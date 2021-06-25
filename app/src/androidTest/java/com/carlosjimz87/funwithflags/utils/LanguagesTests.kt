@@ -17,8 +17,8 @@ class LanguagesTests {
     fun testModifyLocale() {
         val locales = listOf("en", "es", "de", "it", "fr", "pt", "fa", "ja")
         for (newLocale in locales) {
-            Languages.setLocale(appContext, newLocale)
-            val currentLocale = Languages.getLocale(appContext)
+            setLocale(appContext, newLocale)
+            val currentLocale = getLocale(appContext)
             Assert.assertEquals(newLocale, currentLocale)
         }
     }

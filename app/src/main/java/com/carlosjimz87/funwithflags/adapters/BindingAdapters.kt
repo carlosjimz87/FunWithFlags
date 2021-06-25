@@ -39,7 +39,6 @@ fun bindActiveViewState(
     showLoadingState(activeView = view, status = status)
 }
 
-
 @BindingAdapter("inactiveViewState")
 fun bindInactiveViewState(
     view: ImageView,
@@ -47,7 +46,6 @@ fun bindInactiveViewState(
 ) {
     showLoadingState(inactiveView = view, status = status)
 }
-
 
 @BindingAdapter("listState")
 fun bindListState(
@@ -57,7 +55,6 @@ fun bindListState(
     showLoadingState(activeView = listView, status = status)
 }
 
-
 @BindingAdapter("listData")
 fun bindRecyclerView(
     recyclerView: RecyclerView,
@@ -66,10 +63,9 @@ fun bindRecyclerView(
     data?.let {
         Timber.i("Submitting new list (${data.size} countries)")
         val adapter = recyclerView.adapter as CountryListAdapter
-        adapter.submitList(data.toMutableList())
+        adapter.submitAllLists(data.toMutableList(),data.toMutableList())
     }
 }
-
 
 fun showLoadingState(
     status: CountriesApiStatus?,

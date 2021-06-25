@@ -12,7 +12,6 @@ import com.carlosjimz87.funwithflags.utils.handleResponse
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
 class ListViewModel(
     private val countriesRepository: CountriesRepository = CountriesRepositoryImpl(),
 ) : ViewModel() {
@@ -26,6 +25,7 @@ class ListViewModel(
     val countries: LiveData<List<Country>> = _countries
 
     init {
+        _status.value = CountriesApiStatus.SUCCESS
         getCountriesList()
     }
 

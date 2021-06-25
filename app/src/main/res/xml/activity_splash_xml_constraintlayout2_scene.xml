@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:autoTransition="animateToEnd"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="4000">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/lottieAnim"
+               motion:framePosition="60"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/lottieAnim"
+               motion:framePosition="40"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/logo"
+               motion:framePosition="40"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/logo"
+               motion:framePosition="60"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/bg_top"
+               motion:framePosition="40"
+               android:translationY="-200dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/bg_bottom"
+               motion:framePosition="40"
+               android:translationY="200dp" />
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/lottieAnim"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/logo"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:alpha="0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/bg_top"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:translationY="-200dp" />
+        <Constraint
+            android:id="@+id/bg_bottom"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:translationY="200dp" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/lottieAnim"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/logo"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:alpha="1"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/bg_top"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/bg_bottom"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+</MotionScene>

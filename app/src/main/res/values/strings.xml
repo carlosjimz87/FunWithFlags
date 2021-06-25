@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Fun With Flags</string>
+    <string name="background_alpha" translatable="false">0.05</string>
+
 
     <string name="details_flag_image">Flag of %1$s.</string>
     <string name="details_region_image">Region %1$s.</string>
@@ -21,5 +23,4 @@
         <item>P</item>
         <item>E</item>
     </string-array>
-    <string name="title_activity_maps">MapsActivity</string>
 </resources>
