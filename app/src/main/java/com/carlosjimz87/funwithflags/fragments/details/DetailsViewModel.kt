@@ -56,7 +56,7 @@ class DetailsViewModel(
                 data?.let {
                     _countryDetails.value = it.copy(name = getTranslatedName(it, context))
                     _countryProps.value = getCountryProps(it)
-                    _position.value = Pair(translatedName, it.latlng)
+                    _position.value = Pair(it.name, it.latlng)
                     Timber.tag("FUN_WITH_FLAGS")
                         .i("Retrieved country (${it.alpha3Code}) successfully!");
                     Timber.tag("FUN_WITH_FLAGS").i("Country: $it");
