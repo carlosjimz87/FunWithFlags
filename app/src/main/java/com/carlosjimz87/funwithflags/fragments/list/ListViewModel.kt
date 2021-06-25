@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.models.Country
-import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
 import com.carlosjimz87.funwithflags.utils.handleResponse
 import kotlinx.coroutines.launch
 import timber.log.Timber
-
 
 class ListViewModel(
     private val countriesRepository: CountriesRepository = CountriesRepositoryImpl(),

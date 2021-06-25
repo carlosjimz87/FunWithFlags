@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosjimz87.funwithflags.R
-import com.carlosjimz87.funwithflags.adapters.NameAdapter
+import com.carlosjimz87.funwithflags.adapters.getTranslatedName
 import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.CountryProps
@@ -41,6 +41,7 @@ class DetailsViewModel(
     fun setContext(context: Context) {
         this.context = context
     }
+
     init {
         _status.value = CountriesApiStatus.SUCCESS
     }
@@ -53,7 +54,7 @@ class DetailsViewModel(
                 val response = countriesRepository.getCountryDetails(code)
                 val data = handleResponse(response, _status, _error)
                 data?.let {
-                    _countryDetails.value = it.copy(name = NameAdapter.getTranslatedName(it, context))
+                    _countryDetails.value = it.copy(name = getTranslatedName(it, context))
                     _countryProps.value = getCountryProps(it)
                     Timber.tag("FUN_WITH_FLAGS")
                         .i("Retrieved country (${it.alpha3Code}) successfully!");

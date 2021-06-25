@@ -52,6 +52,7 @@ class ListFragment : Fragment() {
             setupRecyclerView(countriesRV, fastScroller)
         }
     }
+
     init {
         setHasOptionsMenu(true)
     }

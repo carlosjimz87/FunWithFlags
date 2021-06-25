@@ -66,7 +66,8 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
 
         fun bind(holder: CountryViewHolder, country: Country, listener: SelectedCountryListener) {
             with(binding) {
-                this.country = country.copy(name = NameAdapter.getTranslatedName(country, holder.itemView.context).justify())
+                this.country = country.copy(name = getTranslatedName(country,
+                    holder.itemView.context).justify())
                 countryLayout.setOnClickListener {
                     listener.onCountryClicked(country)
                     Timber.i("Country ${country.code} clicked")
@@ -89,15 +90,12 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
 
             if (constraint != null && constraint.length >= 2) {
                 filterEnabled = true
-
                 fList = filterListCountry(constraint, currentList)
-
                 results.values = fList
             }
             return results
         }
 
-        @SuppressLint("NotifyDataSetChanged")
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             if (filterEnabled) {
                 val toSubmit = results!!.values as MutableList<Country>
@@ -107,9 +105,3 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
         }
     }
 }
-
-//private fun MutableList<Country>.addMutables(elements: MutableList<*>) {
-//    for (elem in elements) {
-//        this.add(elem as Country)
-//    }
-//}
