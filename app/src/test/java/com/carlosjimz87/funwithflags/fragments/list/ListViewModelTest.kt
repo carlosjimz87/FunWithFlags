@@ -1,4 +1,4 @@
-package com.carlosjimz87.funwithflags
+package com.carlosjimz87.funwithflags.fragments.list
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.carlosjimz87.funwithflags.fragments.list.ListViewModel

@@ -1,4 +1,4 @@
-package com.carlosjimz87.funwithflags
+package com.carlosjimz87.funwithflags.network
 
 import com.carlosjimz87.funwithflags.network.api.CountriesApi
 import com.carlosjimz87.funwithflags.network.models.CountryDetails
