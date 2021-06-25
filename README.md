@@ -32,7 +32,7 @@ For the UI a simple approach was conceived using **Material Design** based compo
 - [X] Setup API client with logger.
 - [X] Handle data from API.
 - [X] Visualize details.
-- [/] Improve performance.
+- [X] Improve performance.
 - [X] Internationalization.
 - [/] Handle errors.
 
