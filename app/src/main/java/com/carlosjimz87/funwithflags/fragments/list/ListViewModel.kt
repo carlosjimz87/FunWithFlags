@@ -34,7 +34,10 @@ class ListViewModel(
         _status.value = CountriesApiStatus.LOADING
         viewModelScope.launch {
             val response = countriesRepository.getAllCountries()
-            val data = handleResponse(response, _status, _error)
+            var data = handleResponse(response, _status, _error)
+            data = data?.filter {
+                it.name.length <= 30
+            }
             data?.let {
                 _countries.value = it
                 Timber.tag("FUN_WITH_FLAGS")
