@@ -14,11 +14,10 @@
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FunWithFlags.DarkActionBar">
+        android:theme="@style/Theme.FunWithFlags">
 
         <activity
             android:name=".splash.SplashActivity"
-            android:theme="@style/Theme.FunWithFlags.FullScreen"
             android:exported="true"
             android:label="">
 
