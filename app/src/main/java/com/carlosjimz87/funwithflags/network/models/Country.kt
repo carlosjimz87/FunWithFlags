@@ -6,4 +6,5 @@ data class Country(
     val name: String,
     val flag: String,
     @Json(name = "alpha3Code") val code: String,
+    val translations: Translations?,
 )

@@ -1,10 +1,8 @@
-package com.carlosjimz87.funwithflags
+package com.carlosjimz87.funwithflags.utils
 
 import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.carlosjimz87.funwithflags.utils.formatCurrency
-import com.carlosjimz87.funwithflags.utils.formatPopulation
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
