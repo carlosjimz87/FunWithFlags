@@ -39,7 +39,6 @@ fun bindActiveViewState(
     showLoadingState(activeView = view, status = status)
 }
 
-
 @BindingAdapter("inactiveViewState")
 fun bindInactiveViewState(
     view: ImageView,
@@ -48,7 +47,6 @@ fun bindInactiveViewState(
     showLoadingState(inactiveView = view, status = status)
 }
 
-
 @BindingAdapter("listState")
 fun bindListState(
     listView: RecyclerView,
@@ -56,7 +54,6 @@ fun bindListState(
 ) {
     showLoadingState(activeView = listView, status = status)
 }
-
 
 @BindingAdapter("listData")
 fun bindRecyclerView(
@@ -69,7 +66,6 @@ fun bindRecyclerView(
         adapter.submitList(data.toMutableList())
     }
 }
-
 
 fun showLoadingState(
     status: CountriesApiStatus?,

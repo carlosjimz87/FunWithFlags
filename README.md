@@ -40,10 +40,11 @@ For the UI a simple approach was conceived using **Material Design** based compo
 
 - [/] RTL Languages.
 - [ ] Filters.
-- [ ] Cacheing.
-- [ ] Animations.
-- [ ] Splash.
-- [ ] Google Map.
+- [ ] Caching.
+- [/] Animations.
+- [X] Splash.
+- [X] Google Map.
 - [ ] UI tests.
+- [ ] Share link.
 
 * UnitTests implemented on demand for each task.

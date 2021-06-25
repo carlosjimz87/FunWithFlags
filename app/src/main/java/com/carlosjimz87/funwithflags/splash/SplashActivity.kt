@@ -2,7 +2,6 @@ package com.carlosjimz87.funwithflags.splash
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -30,9 +29,9 @@ class SplashActivity : AppCompatActivity() {
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
 
-                startActivity(Intent(baseContext,MainActivity::class.java),ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
-//                    startActivity(Intent(baseContext, MainActivity::class.java))
-
+                startActivity(Intent(baseContext, MainActivity::class.java),
+                    ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
+                finish();
             }
 
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {

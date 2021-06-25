@@ -41,6 +41,9 @@ class DetailsViewModel(
     fun setContext(context: Context) {
         this.context = context
     }
+    init {
+        _status.value = CountriesApiStatus.SUCCESS
+    }
 
     fun getCountryDetails(code: String) {
         Timber.i("Fetching country details")
