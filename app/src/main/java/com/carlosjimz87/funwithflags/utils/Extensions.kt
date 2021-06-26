@@ -53,8 +53,7 @@ inline fun <reified T> handleResponse(
         }
         is ObserverResponse.Error -> {
             status.value = CountriesApiStatus.ERROR
-            val errorMsg = response.exception?.message + response.errorMessage
-            error.value = errorMsg
+            error.value = response.exception?.message + response.errorMessage
             response.data
         }
         is ObserverResponse.Success -> {

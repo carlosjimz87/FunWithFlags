@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.databinding.DetailsFragmentBinding
+import com.carlosjimz87.funwithflags.fragments.BaseFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,11 +17,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 
-class DetailsFragment : Fragment(), OnMapReadyCallback {
+class DetailsFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private val detailsViewModel: DetailsViewModel by viewModels()
     private var binding: DetailsFragmentBinding? = null
     private val args: DetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -43,16 +43,23 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
             viewModel = detailsViewModel
         }
         observeLatLng()
+        observeErrorState()
         setupGoogleMap()
     }
 
-    private fun setupViewModel(code:String){
+    private fun setupViewModel(code: String) {
         detailsViewModel.setContext(requireContext())
         detailsViewModel.getCountryDetails(code)
     }
 
-    private fun observeLatLng(){
-        detailsViewModel.position.observe(viewLifecycleOwner, Observer {
+    private fun observeErrorState() {
+        detailsViewModel.error.observe(viewLifecycleOwner, {
+            showApiError()
+        })
+    }
+
+    private fun observeLatLng() {
+        detailsViewModel.position.observe(viewLifecycleOwner, {
             val position = LatLng(it.second[0], it.second[1])
             mMap.clear()
             mMap.addMarker(MarkerOptions().position(position).title(it.first))
@@ -66,10 +73,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-    }
+    override fun onMapReady(googleMap: GoogleMap) = run { mMap = googleMap }
 
     override fun onDestroyView() {
         super.onDestroyView()
