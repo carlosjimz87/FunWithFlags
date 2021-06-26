@@ -11,61 +11,75 @@
             type="com.carlosjimz87.funwithflags.fragments.list.ListViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.carlosjimz87.funwithflagsdemo.ui.list.ListFragment">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/countriesRV"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:elevation="2dp"
-            android:padding="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:listData="@{viewModel.countries}"
-            app:listState="@{viewModel.status}"
-            app:spanCount="1"
-            tools:ignore="SpeakableTextPresentCheck"
-            tools:listitem="@layout/list_item" />
+            app:activeViewState="@{viewModel.status}"
+            tools:context="com.carlosjimz87.funwithflagsdemo.ui.list.ListFragment">
 
-        <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
-            android:id="@+id/fast_scroller"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:scrollerState="@{viewModel.status}"
-            recyclerviewfastscroller:rfs_barColor="@color/primary_light"
-            recyclerviewfastscroller:rfs_handleColor="@color/primary" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/countriesRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:elevation="2dp"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:listData="@{viewModel.countries}"
+                app:spanCount="1"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:listitem="@layout/list_item" />
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:alpha="0.05"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_funwithflags"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
+                android:id="@+id/fast_scroller"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                recyclerviewfastscroller:rfs_barColor="@color/primary_light"
+                recyclerviewfastscroller:rfs_handleColor="@color/primary" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:alpha="0.05"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_funwithflags"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <ImageView
-            android:id="@+id/status_image"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnim"
+            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:importantForAccessibility="no"
+            android:layout_height="200dp"
+            android:padding="20dp"
+            android:layout_gravity="center"
+            android:imeActionLabel="Loading..."
+            android:scaleType="fitCenter"
             android:visibility="gone"
-            app:inactiveViewState="@{viewModel.status}" />
+            app:inactiveViewState="@{viewModel.status}"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/flagloading" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
 </layout>
