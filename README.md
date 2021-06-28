@@ -16,7 +16,7 @@
 
 The app makes use of the **Architecture Components**  of the [Android Jetpack](https://developer.android.com/jetpack/) libraries. The design is based in **MVVM Pattern** and **reactive programming**.
 
-With this architecture strongly guarantees [SEC](https://developer.android.com/jetpack/guide#separation-of-concerns) and using [DI](https://en.wikipedia.org/wiki/Dependency_injection) the integration of different parts is easier and clean.
+With this architecture strongly guarantees [SoC](https://developer.android.com/jetpack/guide#separation-of-concerns) and using [DI principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) the integration of different parts is easier and clean.
 
 To persist data the [Room](https://developer.android.com/jetpack/androidx/releases/room) library is implemented, giving the app cohesion and stability.
 
@@ -34,14 +34,14 @@ For the UI a simple approach was conceived using **Material Design** based compo
 - [X] Visualize details.
 - [X] Improve performance.
 - [X] Internationalization.
-- [/] Handle errors.
+- [X] Handle errors.
 
 ## Extras
 
 - [/] RTL Languages.
-- [ ] Filters.
+- [X] Filters.
 - [ ] Caching.
-- [/] Animations.
+- [X] Animations.
 - [X] Splash.
 - [X] Google Map.
 - [ ] UI tests.
