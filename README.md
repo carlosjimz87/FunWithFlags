@@ -7,9 +7,9 @@
 `Splash`, `List` and `Details` view.
 
 <p align="center">
-<img src="images/splash.jpg" width="32%" style="margin: 2px; border: 1px solid gray;">
-<img src="images/list.jpg" width="32%" style="margin: 2px; border: 1px solid gray;">
-<img src="images/details.jpg" width="32%" style="margin: 2px; border: 1px solid gray;">
+<img src="images/splash.gif" width="31%" style="margin: 2px; border: 1px solid gray;">
+<img src="images/list.png" width="32%" style="margin: 2px; border: 1px solid gray;">
+<img src="images/details.png" width="32%" style="margin: 2px; border: 1px solid gray;">
 </p>
 
 ## Architecture
