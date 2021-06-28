@@ -4,8 +4,6 @@ package com.carlosjimz87.funwithflags.network.models
 data class CountryDetails(
     val alpha2Code: String?,
     val alpha3Code: String,
-    val altSpellings: List<String>,
-    val area: Double?,
     val callingCodes: List<String>,
     val capital: String,
     val currencies: List<Currency>,
