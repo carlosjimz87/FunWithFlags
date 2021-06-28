@@ -12,7 +12,7 @@ import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.network.models.Translations
 
 @Entity(tableName = "countries")
-data class CountryEntity(
+data class CountryDisk(
     @PrimaryKey
     @NonNull val alpha3Code: String,
 
