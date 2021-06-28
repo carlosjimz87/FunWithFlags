@@ -2,7 +2,6 @@ package com.carlosjimz87.funwithflags.network.models
 
 
 data class CountryDetails(
-    val alpha2Code: String?,
     val alpha3Code: String,
     val callingCodes: List<String>,
     val capital: String,

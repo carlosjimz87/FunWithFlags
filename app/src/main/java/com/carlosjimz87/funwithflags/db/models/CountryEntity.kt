@@ -1,29 +1,44 @@
 package com.carlosjimz87.funwithflags.db.models
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.carlosjimz87.funwithflags.db.converters.CurrencyListConverter
+import com.carlosjimz87.funwithflags.db.converters.DoubleListConverter
 import com.carlosjimz87.funwithflags.db.converters.StringListConverter
+import com.carlosjimz87.funwithflags.db.converters.TranslationListConverter
 import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.network.models.Translations
 
 @Entity(tableName = "countries")
 data class CountryEntity(
     @PrimaryKey
-    val alpha3Code: String,
-    val area: Double?,
+    @NonNull val alpha3Code: String,
+
     @TypeConverters(StringListConverter::class)
-    val callingCodes: List<String>,
-    val capital: String,
-    val currencies: List<Currency>,
-    val demonym: String?,
-    val flag: String,
-    val latlng: List<Double>,
-    val name: String,
-    val nativeName: String?,
-    val population: Long?,
-    val region: String?,
+    @NonNull val callingCodes: List<String>,
+
+    @NonNull val capital: String,
+
+    @TypeConverters(CurrencyListConverter::class)
+    @NonNull val currencies: List<Currency>,
+
+    @NonNull val flag: String,
+
+    @TypeConverters(DoubleListConverter::class)
+    @NonNull val latlng: List<Double>,
+
+    @NonNull val name: String,
+
+    val nativeName: String,
+    val demonym: String,
+    val population: Long,
+    val region: String,
+
     @TypeConverters(StringListConverter::class)
-    val timezones: List<String>,
-    val translations: Translations? = null,
+    @NonNull val timezones: List<String>,
+
+    @TypeConverters(TranslationListConverter::class)
+    val translations: Translations,
 )
