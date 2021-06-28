@@ -14,11 +14,7 @@ import com.carlosjimz87.funwithflags.utils.filterListCountry
 import com.carlosjimz87.funwithflags.utils.justify
 import timber.log.Timber
 
-interface SelectedCountryListener {
-    fun onCountryClicked(country: Country)
-}
-
-class CountryListAdapter(private val selectedCountryListener: SelectedCountryListener) :
+class CountryListAdapter(private val selectedCountryListener: (Country) -> Unit) :
     ListAdapter<Country, CountryListAdapter.CountryViewHolder>(DiffCallback()), Filterable {
     private var countryFilter: CountryFilter? = CountryFilter()
     private var fullList: MutableList<Country>? = null
@@ -64,12 +60,12 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(holder: CountryViewHolder, country: Country, listener: SelectedCountryListener) {
+        fun bind(holder: CountryViewHolder, country: Country, listener: (Country) -> Unit) {
             with(binding) {
                 this.country = country.copy(name = getTranslatedName(country,
                     holder.itemView.context).justify())
                 countryLayout.setOnClickListener {
-                    listener.onCountryClicked(country)
+                    listener(country)
                     Timber.i("Country ${country.code} clicked")
                 }
                 executePendingBindings()
@@ -96,6 +92,8 @@ class CountryListAdapter(private val selectedCountryListener: SelectedCountryLis
             return results
         }
 
+        @Suppress("UNCHECKED_CAST")
+        @SuppressLint("NotifyDataSetChanged")
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             if (filterEnabled) {
                 val toSubmit = results!!.values as MutableList<Country>

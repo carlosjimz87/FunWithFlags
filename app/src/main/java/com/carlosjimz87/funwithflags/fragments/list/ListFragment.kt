@@ -9,10 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
-import com.carlosjimz87.funwithflags.adapters.SelectedCountryListener
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
 import com.carlosjimz87.funwithflags.fragments.BaseFragment
-import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
@@ -20,7 +18,7 @@ import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScrol
 class ListFragment : BaseFragment() {
     private val listViewModel: ListViewModel by viewModels()
     private var binding: ListFragmentBinding? = null
-    private var adapter: CountryListAdapter? = null
+    private var countryListAdapter: CountryListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,20 +55,19 @@ class ListFragment : BaseFragment() {
     }
 
     private fun setupAdapter() {
-        adapter = CountryListAdapter(object : SelectedCountryListener {
-            override fun onCountryClicked(country: Country) {
-                val action =
-                    ListFragmentDirections.actionListFragmentToDetailsFragment(country.code)
-                findNavController().navigate(action)
-            }
-        })
+        countryListAdapter = CountryListAdapter {
+            val action =
+                ListFragmentDirections.actionListFragmentToDetailsFragment(it.code)
+            findNavController().navigate(action)
+        }
     }
+
 
     private fun setupRecyclerView(
         countriesRecyclerView: RecyclerView,
         fastScroller: VerticalRecyclerViewFastScroller,
     ) {
-        countriesRecyclerView.adapter = adapter
+        countriesRecyclerView.adapter = countryListAdapter
         countriesRecyclerView.addDividerShape(requireContext(), R.drawable.divider_shape)
         fastScroller.setRecyclerView(countriesRecyclerView)
         countriesRecyclerView.setOnScrollListener(fastScroller.onScrollListener)
@@ -79,7 +76,7 @@ class ListFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-        adapter = null
+        countryListAdapter = null
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -94,10 +91,9 @@ class ListFragment : BaseFragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter?.filter?.filter(newText)
+                countryListAdapter?.filter?.filter(newText)
                 return false
             }
         })
     }
-
 }
