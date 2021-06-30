@@ -17,32 +17,46 @@ open class CountriesRepositoryImpl(
     private val database: CountriesDatabase? = null,
     private val service: CountriesServiceImpl = CountriesServiceImpl(ApiManager.retrofitService),
 ) : CountriesRepository {
-    override suspend fun getAllCountries(): Flow<ObserverResponse<List<Country>>> {
 
-        return withContext(Dispatchers.Main){
-            flow {
-                getCachedCountries()?.let {
-                    emit(ObserverResponse.Success(it))
+    override suspend fun getAllCountries(): ObserverResponse<List<Country>> {
+
+        return withContext(Dispatchers.Main) {
+            when (val response = getNetworkCountries()) {
+                is ObserverResponse.Success -> {
+                    updateDataBase(response.data)
                 }
-                val response = getNetworkCountries()
-                response.data?.let {
-                    updateDataBase(it)
+                is ObserverResponse.Error -> {
+                    val cachedCountries = getCachedCountries()
+                    if (cachedCountries.i)
                 }
-                emit(response)
             }
+//                getCachedCountries()?.let {
+//                    emit(ObserverResponse.Success(it))
+//                }
+//                val response = getNetworkCountries()
+//                response.data?.let {
+//                    updateDataBase(it)
+//                }
+//                emit(response)
         }
     }
+
+
     override suspend fun getCountryDetails(countryId: String): Flow<ObserverResponse<CountryDetails>> {
         return service.getCountryDetails(countryId)
     }
 
-    // Network Accesses
+// Network Accesses
 
     private suspend fun getNetworkCountries() = service.getAllCountries()
 
-    // Database Accesses
+// Database Accesses
 
-    private fun getCachedCountries() = database?.countries()?.getAll()
+    private fun getCachedCountries(): Flow<ObserverResponse<List<Country>>> = {
+            database?.countries().getAll()?.let {
+
+            }
+    }
 
     private fun updateDataBase(countries: List<Country>?) {
         countries?.let {
@@ -54,4 +68,5 @@ open class CountriesRepositoryImpl(
             dbManager.put(ticketDiskList)
         }
     }
+}
 }
