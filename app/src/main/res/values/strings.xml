@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">Fun With Flags</string>
     <string name="background_alpha" translatable="false">0.05</string>
     <string name="search" translatable="false">Search</string>
-
+    <string name="share" translatable="false">Share</string>
 
     <string name="details_flag_image">Flag of %1$s.</string>
     <string name="details_region_image">Region %1$s.</string>
@@ -16,7 +16,9 @@
     <string name="demonym_prefix">Demonym</string>
     <string name="timezone_prefix">Timezone</string>
     <string name="api_error_message">Something is wrong! The data is not available now.</string>
-
+    <string name="country_details_title">Details of : %1$s (%2$s)\n\n</string>
+    <string name="country_details_text">%1$s: %2$s\n%3$s: %4$s\n%5$s: %6$s\n%7$s: %8$s
+        \n%9$s: %10$s\n%11$s: %12$s</string>
     <string-array name="population_suffixes">
         <item>k</item>
         <item>M</item>

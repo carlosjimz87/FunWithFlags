@@ -1,7 +1,11 @@
 package com.carlosjimz87.funwithflags.fragments.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
@@ -47,6 +51,10 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
         setupGoogleMap()
     }
 
+    init {
+        setHasOptionsMenu(true)
+    }
+
     private fun setupViewModel(code: String) {
         detailsViewModel.setContext(requireContext())
         detailsViewModel.getCountryDetails(code)
@@ -80,4 +88,33 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
         binding = null
     }
 
+    private fun shareCountryDetails(message: Pair<String, String>?) {
+
+        val finalMsg = message?.first + message?.second
+
+        val intent = Intent(Intent.ACTION_SEND)
+            .setType("text/plain")
+            .putExtra(Intent.EXTRA_SUBJECT, message?.first)
+            .putExtra(Intent.EXTRA_TEXT, finalMsg)
+
+        if (activity?.packageManager?.resolveActivity(intent, 0) != null) {
+            startActivity(intent)
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.details_view_menu, menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                shareCountryDetails(detailsViewModel.shareDetails.value)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }

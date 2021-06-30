@@ -14,7 +14,12 @@ import com.carlosjimz87.funwithflags.network.models.CountryProps
 import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
 import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
-import com.carlosjimz87.funwithflags.utils.*
+import com.carlosjimz87.funwithflags.utils.formatCurrency
+import com.carlosjimz87.funwithflags.utils.formatPopulation
+import com.carlosjimz87.funwithflags.utils.formatShareText
+import com.carlosjimz87.funwithflags.utils.formatShareTitle
+import com.carlosjimz87.funwithflags.utils.getCompatDrawable
+import com.carlosjimz87.funwithflags.utils.handleResponse
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -28,6 +33,9 @@ class DetailsViewModel(
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
+
+    private val _shareDetails = MutableLiveData<Pair<String, String>>()
+    val shareDetails: LiveData<Pair<String, String>> = _shareDetails
 
     private val _countryDetails = MutableLiveData<CountryDetails>()
     val countryDetails: LiveData<CountryDetails> = _countryDetails
@@ -67,18 +75,23 @@ class DetailsViewModel(
 
     private fun getCountryProps(country: CountryDetails): CountryProps {
         with(country) {
-            return CountryProps(
-                capital = Pair(first = context.getString(R.string.capital_prefix),
-                    second = capital),
+            val countryProps = CountryProps(
+                capital = getCapital(capital),
                 nativeName = getNativeName(nativeName),
-                demonym = Pair(first = context.getString(R.string.demonym_prefix),
-                    second = demonym.toString()),
+                demonym = getDemonym(demonym.toString()),
                 population = getPopulation(population),
                 callingCode = getCallingCodes(callingCodes),
                 currency = getCurrencies(currencies),
                 timezone = getTimezones(timezones),
                 region = getRegion(region)
             )
+
+            _shareDetails.value = Pair(
+                formatShareTitle(country.name, country.alpha3Code, context),
+                formatShareText(countryProps, context)
+            )
+
+            return countryProps
         }
     }
 
@@ -90,6 +103,14 @@ class DetailsViewModel(
         "Polar" to R.drawable.ic_antarctica,
         "Oceania" to R.drawable.ic_oceania,
     )
+
+    private fun getCapital(capital:String): Pair<String,String> {
+        return Pair(context.getString(R.string.capital_prefix), capital)
+    }
+
+    private fun getDemonym(demonym:String): Pair<String,String> {
+        return Pair(context.getString(R.string.demonym_prefix), demonym)
+    }
 
     private fun getRegion(region: String?): Drawable? {
         return region?.let {
