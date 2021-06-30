@@ -15,10 +15,7 @@
     <string name="currency_prefix">Currency</string>
     <string name="demonym_prefix">Demonym</string>
     <string name="timezone_prefix">Timezone</string>
-    <string name="api_error_message">Something is wrong! The data is not available now.</string>
-    <string name="country_details_title">Details of : %1$s (%2$s)\n\n</string>
-    <string name="country_details_text">%1$s: %2$s\n%3$s: %4$s\n%5$s: %6$s\n%7$s: %8$s
-        \n%9$s: %10$s\n%11$s: %12$s</string>
+
     <string-array name="population_suffixes">
         <item>k</item>
         <item>M</item>
@@ -27,4 +24,10 @@
         <item>P</item>
         <item>E</item>
     </string-array>
+
+    <string name="api_error_message">Something is wrong! The data is not available now.</string>
+    <string name="country_details_title">"Details of : %1$s (%2$s)  "</string>
+    <string name="country_details_text" translatable="false">%1$s: %2$s\n%3$s: %4$s\n%5$s: %6$s\n%7$s: %8$s
+        \n%9$s: %10$s\n%11$s: %12$s</string>
+
 </resources>

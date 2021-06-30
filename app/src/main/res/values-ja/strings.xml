@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="details_flag_image">%1$s国旗</string>
     <string name="details_region_image">%1$s領域</string>
@@ -21,4 +21,6 @@
         <item>四兆</item>
         <item>五千億</item>
     </string-array>
+    <string name="api_error_message">何かが間違っている！ データは現在利用できません。</string>
+    <string name="country_details_title">"詳細 : %1$s (<xliff:g>%2$s</xliff:g>) "</string>
 </resources>

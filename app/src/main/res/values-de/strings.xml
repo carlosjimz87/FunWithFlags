@@ -21,4 +21,7 @@
         <item>Bll</item>
         <item>Q</item>
     </string-array>
+
+    <string name="api_error_message">Irgendwas stimmt nicht! Die Daten sind jetzt nicht verfügbar.</string>
+    <string name="country_details_title">"Details von : %1$s (%2$s)  "</string>
 </resources>

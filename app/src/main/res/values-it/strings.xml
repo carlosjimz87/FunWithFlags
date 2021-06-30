@@ -21,4 +21,6 @@
         <item>C</item>
         <item>Q</item>
     </string-array>
+    <string name="api_error_message">Qualcosa è sbagliato! I dati non sono disponibili ora.</string>
+    <string name="country_details_title">"Dettagli di : %1$s (%2$s)  "</string>
 </resources>
