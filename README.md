@@ -38,13 +38,14 @@ For the UI a simple approach was conceived using **Material Design** based compo
 
 ## Extras
 
-- [/] RTL Languages.
+- [X] RTL Languages.
 - [X] Filters.
 - [ ] Caching.
+- [ ] Hilt DI.
 - [X] Animations.
 - [X] Splash.
 - [X] Google Map.
+- [X] Share link.
 - [ ] UI tests.
-- [ ] Share link.
 
 * UnitTests implemented on demand for each task.
