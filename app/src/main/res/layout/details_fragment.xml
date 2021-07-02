@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+        <import type="com.carlosjimz87.funwithflags.fragments.CountriesApiStatus"/>
         <variable
             name="viewModel"
             type="com.carlosjimz87.funwithflags.fragments.details.DetailsViewModel" />
@@ -18,7 +20,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:activeViewState="@{viewModel.status}"
+            android:visibility="@{(viewModel.status == CountriesApiStatus.SUCCESS)? View.VISIBLE : View.GONE}"
             tools:context=".fragments.details.DetailsFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -194,8 +196,7 @@
             android:imeActionLabel="Loading..."
             android:padding="20dp"
             android:scaleType="fitCenter"
-            android:visibility="gone"
-            app:inactiveViewState="@{viewModel.status}"
+            android:visibility="@{(viewModel.status == CountriesApiStatus.LOADING)? View.VISIBLE : View.GONE}"
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/flagloading" />
 

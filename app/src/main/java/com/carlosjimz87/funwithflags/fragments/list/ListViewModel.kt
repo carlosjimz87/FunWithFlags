@@ -1,11 +1,9 @@
 package com.carlosjimz87.funwithflags.fragments.list
 
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.fragments.CountriesApiStatus
 import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository

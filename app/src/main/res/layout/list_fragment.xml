@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <import type="com.carlosjimz87.funwithflags.fragments.CountriesApiStatus"/>
         <variable
             name="viewModel"
             type="com.carlosjimz87.funwithflags.fragments.list.ListViewModel" />
@@ -19,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:activeViewState="@{viewModel.status}"
+            android:visibility="@{(viewModel.status == CountriesApiStatus.SUCCESS)? View.VISIBLE : View.GONE}"
             tools:context="com.carlosjimz87.funwithflagsdemo.ui.list.ListFragment">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -74,8 +75,7 @@
             android:layout_gravity="center"
             android:imeActionLabel="Loading..."
             android:scaleType="fitCenter"
-            android:visibility="gone"
-            app:inactiveViewState="@{viewModel.status}"
+            android:visibility="@{(viewModel.status == CountriesApiStatus.LOADING)? View.VISIBLE : View.GONE}"
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/flagloading" />
 
