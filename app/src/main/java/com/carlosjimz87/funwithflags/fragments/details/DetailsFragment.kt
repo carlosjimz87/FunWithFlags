@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 
 class DetailsFragment : BaseFragment(), OnMapReadyCallback {
-    private lateinit var mMap: GoogleMap
+    private var mMap: GoogleMap? = null
     private val detailsViewModel: DetailsViewModel by viewModels()
     private var binding: DetailsFragmentBinding? = null
     private val args: DetailsFragmentArgs by navArgs()
@@ -46,9 +46,9 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
             lifecycleOwner = viewLifecycleOwner
             viewModel = detailsViewModel
         }
+        setupGoogleMap()
         observeLatLng()
         observeErrorState()
-        setupGoogleMap()
     }
 
     init {
@@ -69,9 +69,9 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
     private fun observeLatLng() {
         detailsViewModel.position.observe(viewLifecycleOwner, {
             val position = LatLng(it.second[0], it.second[1])
-            mMap.clear()
-            mMap.addMarker(MarkerOptions().position(position).title(it.first))
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(position))
+            mMap?.clear()
+            mMap?.addMarker(MarkerOptions().position(position).title(it.first))
+            mMap?.moveCamera(CameraUpdateFactory.newLatLng(position))
         })
     }
 
@@ -81,7 +81,9 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    override fun onMapReady(googleMap: GoogleMap) = run { mMap = googleMap }
+    override fun onMapReady(googleMap: GoogleMap) = run {
+        mMap = googleMap
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
