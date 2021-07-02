@@ -6,8 +6,10 @@
 
     <data>
 
-        <import type="android.view.View"/>
-        <import type="com.carlosjimz87.funwithflags.fragments.CountriesApiStatus"/>
+        <import type="android.view.View" />
+
+        <import type="com.carlosjimz87.funwithflags.fragments.CountriesApiStatus" />
+
         <variable
             name="viewModel"
             type="com.carlosjimz87.funwithflags.fragments.details.DetailsViewModel" />
@@ -28,18 +30,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:contentDescription="@{@string/details_flag_image(viewModel.countryDetails.name)}"
-                    android:scaleType="fitXY"
-                    app:imageUrl="@{viewModel.countryDetails.flag}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ImageContrastCheck"
-                    tools:src="@drawable/broken_image" />
 
                 <RelativeLayout
                     android:id="@+id/id_layout"
@@ -50,7 +40,8 @@
                     android:minHeight="68dp"
                     android:padding="2dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/country_name"
@@ -92,25 +83,45 @@
 
                 </RelativeLayout>
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@{@string/details_flag_image(viewModel.countryDetails.name)}"
+                    app:imageUrl="@{viewModel.countryDetails.flag}"
+                    app:layout_constraintEnd_toEndOf="@id/guidelineV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_layout"
+                    tools:ignore="ImageContrastCheck"
+                    tools:src="@drawable/broken_image" />
+
+                <ImageView
+                    app:layout_constraintEnd_toEndOf="@id/guidelineV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/regionView2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@{@string/details_region_image(viewModel.countryDetails.name)}"
+                    android:scaleType="fitXY"
+                    app:imageDrawable="@{viewModel.countryProps.region}"
+                    tools:src="@drawable/ic_america" />
+
                 <LinearLayout
                     android:id="@+id/property_layout"
-                    android:layout_width="match_parent"
+                    android:background="@drawable/vertical_border"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:maxHeight="200dp"
                     android:minHeight="200dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:padding="12dp"
-                    android:weightSum="1"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guidelineV"
                     app:layout_constraintTop_toBottomOf="@+id/id_layout">
-
-                    <LinearLayout
-                        android:id="@+id/info_layout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:orientation="vertical">
 
                         <include
                             layout="@layout/property_pair"
@@ -149,39 +160,34 @@
                             bind:prefix="@{viewModel.countryProps.timezone.first}"
                             bind:value="@{viewModel.countryProps.timezone.second}" />
 
-                    </LinearLayout>
+                </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/region_layout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:maxHeight="60dp"
-                        android:minHeight="60dp"
-                        android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:padding="2dp"
+                    android:background="@drawable/vertical_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guidelineV"
+                    app:layout_constraintTop_toBottomOf="@+id/property_layout"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-                        <ImageView
-                            android:id="@+id/regionView"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="end"
-                            android:contentDescription="@{@string/details_region_image(viewModel.countryDetails.name)}"
-                            android:scaleType="fitXY"
-                            app:imageDrawable="@{viewModel.countryProps.region}"
-                            tools:src="@drawable/ic_america" />
-
-                    </LinearLayout>
+                    <fragment
+                        android:id="@+id/map"
+                        class="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
                 </LinearLayout>
 
 
-                <fragment
-                    android:id="@+id/map"
-                    class="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/property_layout" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidelineV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,7 +205,7 @@
             android:visibility="@{(viewModel.status == CountriesApiStatus.LOADING)? View.VISIBLE : View.GONE}"
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/flagloading"
-            tools:visibility="gone" />
+            tools:visibility="gone"/>
 
     </FrameLayout>
 </layout>

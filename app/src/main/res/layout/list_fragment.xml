@@ -77,7 +77,8 @@
             android:scaleType="fitCenter"
             android:visibility="@{(viewModel.status == CountriesApiStatus.LOADING)? View.VISIBLE : View.GONE}"
             app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/flagloading" />
+            app:lottie_rawRes="@raw/flagloading"
+            tools:visibility="gone" />
 
 
     </LinearLayout>
