@@ -10,7 +10,7 @@ data class Translations(
     val fa: String?,
     val it: String?,
 ) {
-    fun toMapString(): Map<String, String?> {
+    fun toMapString(default: String): Map<String, String?> {
 
         return mapOf(
             "es" to es,
@@ -20,6 +20,7 @@ data class Translations(
             "ja" to ja,
             "fa" to fa,
             "it" to it,
+            "en" to default
         )
     }
 }

@@ -1,9 +1,10 @@
 package com.carlosjimz87.funwithflags.utils
 
 import com.carlosjimz87.funwithflags.network.models.Country
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.lessThan
 import org.junit.Assert
 import org.junit.Test
-import java.util.*
 
 class FiltersTests {
 
@@ -20,11 +21,10 @@ class FiltersTests {
 
     @Test
     fun filterListCountryTest() {
-        Assert.assertEquals(1, filterListCountry("Es", mockCountries).size)
-        Assert.assertEquals(1, filterListCountry("es", mockCountries).size)
-        Assert.assertEquals(1, filterListCountry("fr", mockCountries).size)
-        Assert.assertEquals(1, filterListCountry("GB", mockCountries).size)
-
+        assertThat(filterListCountry("Es", mockCountries).size, lessThan(mockCountries.size))
+        assertThat(filterListCountry("es", mockCountries).size, lessThan(mockCountries.size))
+        assertThat(filterListCountry("fr", mockCountries).size, lessThan(mockCountries.size))
+        assertThat(filterListCountry("GB", mockCountries).size, lessThan(mockCountries.size))
     }
 
     @Test

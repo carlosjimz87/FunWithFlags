@@ -61,7 +61,8 @@ class CountryListAdapter(private val selectedCountryListener: (Country) -> Unit)
 
         fun bind(holder: CountryViewHolder, country: Country, listener: (Country) -> Unit) {
             with(binding) {
-                this.country = country.copy(name = getTranslatedName(country))
+                this.country = country.copy(name = getTranslatedName(country,
+                    holder.itemView.context))
                 countryLayout.setOnClickListener {
                     listener(country)
                     Timber.i("Country ${country.code} clicked")
