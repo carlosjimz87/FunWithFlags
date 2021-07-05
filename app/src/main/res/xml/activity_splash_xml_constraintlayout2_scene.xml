@@ -10,16 +10,8 @@
         motion:duration="4000">
        <KeyFrameSet>
            <KeyAttribute
-               motion:motionTarget="@+id/lottieAnim"
-               motion:framePosition="60"
-               android:alpha="0" />
-           <KeyAttribute
-               motion:motionTarget="@+id/lottieAnim"
-               motion:framePosition="40"
-               android:alpha="1" />
-           <KeyAttribute
                motion:motionTarget="@+id/logo"
-               motion:framePosition="40"
+               motion:framePosition="10"
                android:alpha="0" />
            <KeyAttribute
                motion:motionTarget="@+id/logo"

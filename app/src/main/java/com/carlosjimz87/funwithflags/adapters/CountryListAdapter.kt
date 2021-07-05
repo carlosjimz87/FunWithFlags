@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carlosjimz87.funwithflags.databinding.ListItemBinding
 import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.utils.filterListCountry
-import com.carlosjimz87.funwithflags.utils.justify
 import timber.log.Timber
 
 class CountryListAdapter(private val selectedCountryListener: (Country) -> Unit) :
@@ -62,8 +61,7 @@ class CountryListAdapter(private val selectedCountryListener: (Country) -> Unit)
 
         fun bind(holder: CountryViewHolder, country: Country, listener: (Country) -> Unit) {
             with(binding) {
-                this.country = country.copy(name = getTranslatedName(country,
-                    holder.itemView.context).justify())
+                this.country = country.copy(name = getTranslatedName(country))
                 countryLayout.setOnClickListener {
                     listener(country)
                     Timber.i("Country ${country.code} clicked")
