@@ -5,6 +5,8 @@ import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import com.carlosjimz87.funwithflags.network.services.CountriesServiceImpl
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 open class CountriesRepositoryImpl(
     private val service: CountriesServiceImpl = CountriesServiceImpl(ApiManager.retrofitService),

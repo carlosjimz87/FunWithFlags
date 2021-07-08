@@ -10,9 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.carlosjimz87.funwithflags.App
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.databinding.DetailsFragmentBinding
+import com.carlosjimz87.funwithflags.factory.ViewModelsFactory
 import com.carlosjimz87.funwithflags.fragments.BaseFragment
+import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -23,7 +26,10 @@ import timber.log.Timber
 
 class DetailsFragment : BaseFragment(), OnMapReadyCallback {
     private var mMap: GoogleMap? = null
-    private val detailsViewModel: DetailsViewModel by viewModels()
+    private val detailsViewModel by viewModels<DetailsViewModel>{
+        ViewModelsFactory((requireContext().applicationContext as App))
+    }
+
     private var binding: DetailsFragmentBinding? = null
     private val args: DetailsFragmentArgs by navArgs()
 
@@ -56,7 +62,6 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     private fun setupViewModel(code: String) {
-        detailsViewModel.setContext(requireContext())
         detailsViewModel.getCountryDetails(code)
     }
 
@@ -108,7 +113,7 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.details_view_menu, menu)
     }
-    
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_share -> {
