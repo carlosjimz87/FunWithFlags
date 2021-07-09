@@ -1,4 +1,4 @@
-package com.carlosjimz87.funwithflags.factory
+package com.carlosjimz87.funwithflags.factories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

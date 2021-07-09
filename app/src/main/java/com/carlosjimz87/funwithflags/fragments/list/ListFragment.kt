@@ -15,7 +15,7 @@ import com.carlosjimz87.funwithflags.App
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
-import com.carlosjimz87.funwithflags.factory.ViewModelsFactory
+import com.carlosjimz87.funwithflags.factories.ViewModelsFactory
 import com.carlosjimz87.funwithflags.fragments.BaseFragment
 import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
