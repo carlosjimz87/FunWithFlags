@@ -13,9 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.carlosjimz87.funwithflags.App
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.databinding.DetailsFragmentBinding
-import com.carlosjimz87.funwithflags.factory.ViewModelsFactory
+import com.carlosjimz87.funwithflags.factories.ViewModelsFactory
 import com.carlosjimz87.funwithflags.fragments.BaseFragment
-import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
