@@ -8,9 +8,6 @@ import timber.log.Timber
 @HiltAndroidApp
 class App : Application() {
 
-    val countriesRepository: CountriesRepository
-        get() = ServiceLocator.provideCountriesRepository()
-
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {

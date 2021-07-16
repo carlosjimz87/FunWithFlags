@@ -1,15 +1,13 @@
 package com.carlosjimz87.funwithflags.repositories
 
-import com.carlosjimz87.funwithflags.network.api.ApiManager
-import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.Country
+import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import com.carlosjimz87.funwithflags.network.services.CountriesServiceImpl
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-open class CountriesRepositoryImpl(
-    private val service: CountriesServiceImpl = CountriesServiceImpl(ApiManager.retrofitService),
+open class CountriesRepositoryImpl @Inject constructor(
+    private val service: CountriesServiceImpl
 ) : CountriesRepository {
     override suspend fun getAllCountries(): ObserverResponse<List<Country>> {
         return service.getAllCountries()
