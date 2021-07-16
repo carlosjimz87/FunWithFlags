@@ -1,21 +1,15 @@
 package com.carlosjimz87.funwithflags.fragments.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.carlosjimz87.funwithflags.App
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.adapters.CountryListAdapter
 import com.carlosjimz87.funwithflags.databinding.ListFragmentBinding
-import com.carlosjimz87.funwithflags.factory.ViewModelsFactory
 import com.carlosjimz87.funwithflags.fragments.BaseFragment
 import com.carlosjimz87.funwithflags.utils.addDividerShape
 import timber.log.Timber
@@ -26,9 +20,7 @@ class ListFragment : BaseFragment() {
 
     private var countryListAdapter: CountryListAdapter? = null
 
-    private val listViewModel by viewModels<ListViewModel> {
-        ViewModelsFactory((requireContext().applicationContext as App))
-    }
+    private val listViewModel: ListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

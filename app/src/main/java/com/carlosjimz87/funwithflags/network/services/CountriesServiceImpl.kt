@@ -5,8 +5,9 @@ import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.Country
 import com.carlosjimz87.funwithflags.network.responses.ObserverResponse
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-open class CountriesServiceImpl(private val api: CountriesApi) : BaseService {
+open class CountriesServiceImpl @Inject constructor(private val api: CountriesApi) : BaseService {
     suspend fun getAllCountries(): ObserverResponse<List<Country>> {
         return apiCall(Dispatchers.IO) {
             api.getAllCountries()

@@ -2,20 +2,12 @@ package com.carlosjimz87.funwithflags.fragments.details
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.carlosjimz87.funwithflags.App
 import com.carlosjimz87.funwithflags.R
 import com.carlosjimz87.funwithflags.databinding.DetailsFragmentBinding
-import com.carlosjimz87.funwithflags.factory.ViewModelsFactory
 import com.carlosjimz87.funwithflags.fragments.BaseFragment
-import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -26,11 +18,11 @@ import timber.log.Timber
 
 class DetailsFragment : BaseFragment(), OnMapReadyCallback {
     private var mMap: GoogleMap? = null
-    private val detailsViewModel by viewModels<DetailsViewModel>{
-        ViewModelsFactory((requireContext().applicationContext as App))
-    }
+
+    private val detailsViewModel: DetailsViewModel by viewModels()
 
     private var binding: DetailsFragmentBinding? = null
+
     private val args: DetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -45,6 +37,7 @@ class DetailsFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val code = args.codeCountry
         Timber.i("Country ($code) sent to Details")
         setupViewModel(code)
