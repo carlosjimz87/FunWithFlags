@@ -2,6 +2,7 @@ package com.carlosjimz87.funwithflags.network
 
 const val BASE_URL =
     "https://restcountries.eu/"
+const val TIMEOUT = 40L
 
 object Endpoints {
     const val GET_ALL_COUNTRIES = "all/"

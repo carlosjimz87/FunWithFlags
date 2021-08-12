@@ -3,6 +3,7 @@ package com.carlosjimz87.funwithflags.fragments.details
 import android.app.Application
 import android.content.Context
 import android.graphics.drawable.Drawable
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,19 +15,12 @@ import com.carlosjimz87.funwithflags.network.models.CountryDetails
 import com.carlosjimz87.funwithflags.network.models.CountryProps
 import com.carlosjimz87.funwithflags.network.models.Currency
 import com.carlosjimz87.funwithflags.repositories.CountriesRepository
-import com.carlosjimz87.funwithflags.repositories.CountriesRepositoryImpl
-import com.carlosjimz87.funwithflags.utils.formatCurrency
-import com.carlosjimz87.funwithflags.utils.formatPopulation
-import com.carlosjimz87.funwithflags.utils.formatShareText
-import com.carlosjimz87.funwithflags.utils.formatShareTitle
-import com.carlosjimz87.funwithflags.utils.getCompatDrawable
-import com.carlosjimz87.funwithflags.utils.handleResponse
+import com.carlosjimz87.funwithflags.utils.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class DetailsViewModel(
-    application: Application,
-    private val countriesRepository: CountriesRepository = CountriesRepositoryImpl(),
+class DetailsViewModel @ViewModelInject constructor(
+    private val countriesRepository: CountriesRepository, application: Application,
 ) : AndroidViewModel(application) {
 
     private val _status = MutableLiveData<CountriesApiStatus>()
@@ -118,28 +112,37 @@ class DetailsViewModel(
 
     private fun getNativeName(context: Context, nativeName: String?): Pair<String, String>? {
         return nativeName?.let {
-            return Pair(first = context.resources.getString(R.string.native_prefix),
-                second = nativeName)
+            return Pair(
+                first = context.resources.getString(R.string.native_prefix),
+                second = nativeName
+            )
         }
     }
 
     private fun getPopulation(context: Context, population: Long?): Pair<String, String>? {
         return population?.let {
-            return Pair(first = context.resources.getString(R.string.population_prefix),
-                second = formatPopulation(population, context))
+            return Pair(
+                first = context.resources.getString(R.string.population_prefix),
+                second = formatPopulation(population, context)
+            )
         }
     }
 
 
     private fun getTimezones(context: Context, timezones: List<String>): Pair<String, String>? {
-        return if (timezones.isNotEmpty()) Pair(context.resources.getString(R.string.timezone_prefix),
-            "+${timezones[0]}") else null
+        return if (timezones.isNotEmpty()) Pair(
+            context.resources.getString(R.string.timezone_prefix),
+            "+${timezones[0]}"
+        ) else null
     }
 
     private fun getCallingCodes(context: Context, codes: List<String>): Pair<String, String>? {
-        return if (codes.isNotEmpty() && codes[0].isNotEmpty()) Pair(context.resources.getString(
-            R.string.calling_code_prefix),
-            "+${codes[0]}") else null
+        return if (codes.isNotEmpty() && codes[0].isNotEmpty()) Pair(
+            context.resources.getString(
+                R.string.calling_code_prefix
+            ),
+            "+${codes[0]}"
+        ) else null
     }
 
     private fun getCurrencies(context: Context, currencies: List<Currency>): Pair<String, String>? {
